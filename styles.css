@@ -1,0 +1,13 @@
+h2  {
+    color:black;
+    text-align: center;
+    font-size: 72pt;
+    background-color:#E2BC55;
+    font-family: "Avenir";
+}
+
+h3{
+    color:rgb(28, 89, 180);
+    font-size: 24pt;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
