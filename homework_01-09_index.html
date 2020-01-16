@@ -12,7 +12,8 @@
       Glen Canyon National Recreation Area
     </p>
 
-    <img src="utah.jpg" alt="Hite, Utah" width="300"></img>
+    <img src="./images/utah.jpg" alt="Hite, Utah" width="300"></img>
+    
     <button id="clickToChangeColor">
       click to change color
     </button>
@@ -23,10 +24,10 @@
 
     <script>
 
-        document.querySelector("p").innerHTML ="Located in Utah";
+      document.querySelector("p").innerHTML ="Located in Utah";
 
 
-        function changeColor(color) {        
+      function changeColor(color) {        
           document.querySelector("p").style.color = color;
           }
 
@@ -35,13 +36,14 @@
         changeColor("red");
       }
 
-      function changeImage(img)  {
-        document.querySelector ("img".src="utah2.jpg");
-      }
+      function changeImage() {
+        document.querySelector("img").src = "./images/utah2.jpg";
+        }
 
-      document.querySelector("#clickToChangeImage") .onClick = function()  {
+      document.querySelector("#clickToChangeImage").onclick = function() {
         changeImage();
-      }
+        }
+        
         </script>
 
   </body>
