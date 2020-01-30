@@ -1,7 +1,7 @@
 var realtimeURL = "https://whiteboard.datawheel.us/api/google-analytics/realtime/random";
-var frequency = 2.5 * 1000; // 1 second
+var frequency = 1.5 * 1000; // 1 second
 
-var dataMax = 5;    //this means max bars that will show up are 5//
+var dataMax = 10;    //this means max bars that will show up are 5//
 var data = [];  //creates empty data array to use for whatever//
 
 var width = window.innerWidth;
@@ -80,7 +80,7 @@ var bars = svg.selectAll(".bar")
         
         
     bars.exit()
-        .transition().duration(frequency / 10)
+        .transition().duration(frequency / 2)
         .attr("height", 0)
         .attr("y", height)
         .attr("fill", "white")
