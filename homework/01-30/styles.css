@@ -1,0 +1,9 @@
+.box    {
+    fill: transparent;
+    stroke: blue;
+    stroke-width: 3px;
+}
+
+tspan   {
+    baseline-shift: -100%;
+}
