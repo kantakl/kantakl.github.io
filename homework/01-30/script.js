@@ -14,9 +14,10 @@ var columnWidth = 100;
 
 var svg = d3.select("#chart");
 
-function drawBoxes(currentData) {
+function drawBoxes(data) {
+    
     var boxes = svg.selectAll(".box")
-        .data(data1);
+        .data(data);
 
     boxes.enter().append("rect")
         .attr("class", "box")
@@ -28,22 +29,26 @@ function drawBoxes(currentData) {
         .attr("height", 200);
 
     boxes.exit().remove();
+    
     var labels = svg.selectAll(".label")
-    .data(currentData);
+    .data(data);
 
 var fontSize = 20;
 
 var enterLabels = labels.enter().append("text")     //code that draws labels//
     .attr("class", "label")
     .attr("font-size", fontSize)
-    .attr("y", 0)
     .attr("x", function(d, i)   {
         return i * columnWidth;
 
     })
+    .attr("y", 0)
+    .attr("width", columnWidth)
+    .attr("height", 200);
+
 
 labels.merge(enterLabels)
-    .each(function(d) {
+    .each(function(d, i) {
     var textElement = d3.select(this);
     textElement.text(" ");
 
@@ -58,22 +63,20 @@ labels.merge(enterLabels)
 
     var domElement = tspan.node();
 
-    var tspanWidth = domElement.node().getBoundingClientRect().width;
+    var tspanWidth = domElement.getBoundingClientRect().width;
 
 
 
-  if (tspanWidth > columnWidth) {
-    tspan.text(sentence);
-    tspan = textElement.append("tspan")
-      .attr("baseline-shift", "-100%")
-      .attr("y", line * fontSize)
-      .attr("x", function() {
-        return i * columnWidth;
-      })
-      .text(word);
-  }
+    if (tspanWidth > columnWidth) {
+        line++;
+        tspan.text(sentence);
+        tspan = textElement.append("tspan")
+        .attr("y", line * fontSize)
+        .attr("x", columnWidth * i)
+        .text(word);
+    }
 
-})
+});
 
 
   });
