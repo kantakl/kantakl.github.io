@@ -1,89 +1,160 @@
-var svg = d3.select("#chart");
+var width = window.innerWidth;
+var height = window.innerHeight;
 
-var data1 = [
-    "Hello, my name is Liz",
-    "Titles",
-    "Strings this is a string I don't understand strings"
-];
+var svg = d3.select("#chart")
+    .attr("width", width)
+    .attr("height", height);
 
-var data2 = [
-    "Heyo Ima string"
-];
+var realTimeURL = "https://whiteboard.datawheel.us/api/google-analytics/realtime/random";
 
-var columnWidth = 100;
+var frequency = 3000; //3 seconds
 
-var svg = d3.select("#chart");
+var dataMax = 25;
 
-function drawBoxes(data) {
-    
-    var boxes = svg.selectAll(".box")
-        .data(data);
+var data = [];
 
-    boxes.enter().append("rect")
-        .attr("class", "box")
-        .attr("x", function(d, i)   {
-            return i * columnWidth;
-        })
-        .attr("y", 0)                           //code that draw boxes//
-        .attr("width", columnWidth)
-        .attr("height", 200);
+var barWidth = width / dataMax;
 
-    boxes.exit().remove();
-    
-    var labels = svg.selectAll(".label")
-    .data(data);
+var x = d3.scaleLinear()
+    .domain([dataMax, 1])
+    .range([0, width-barWidth]);
 
-var fontSize = 20;
+/// fetchin' time
 
-var enterLabels = labels.enter().append("text")     //code that draws labels//
-    .attr("class", "label")
-    .attr("font-size", fontSize)
-    .attr("x", function(d, i)   {
-        return i * columnWidth;
-
-    })
-    .attr("y", 0)
-    .attr("width", columnWidth)
-    .attr("height", 200);
+function fetchData() {
+d3.json(realTimeURL, function(error,users) {
 
 
-labels.merge(enterLabels)
-    .each(function(d, i) {
-    var textElement = d3.select(this);
-    textElement.text(" ");
+    var dataObject = {
+        users: users,
+        timestamp: new Date()
+        };
 
-    var words = d.split(" ");   //allows line breaks within svg//
-    var tspan = textElement.append("tspan")
-    var line = 0;
-
-    words.forEach(function(word)    {
-
-    var sentence = tspan.text();
-    tspan.text(sentence + " " + word);
-
-    var domElement = tspan.node();
-
-    var tspanWidth = domElement.getBoundingClientRect().width;
-
-
-
-    if (tspanWidth > columnWidth) {
-        line++;
-        tspan.text(sentence);
-        tspan = textElement.append("tspan")
-        .attr("y", line * fontSize)
-        .attr("x", columnWidth * i)
-        .text(word);
+    data.unshift(dataObject);
+    if (data.length > dataMax) {
+        data.pop();
     }
 
-});
+    var max = d3.max(data, function(d) {
+        return d.users;
+        })
+
+    var barHeight = d3.scaleLinear()
+        .domain([0, max])
+        .range([0, height]);
+
+    var bars = svg.selectAll(".bar")
+        .data(data, function(d) {
+        return d.timestamp;
+        });
+
+        var enter = bars.enter().append("rect")
+            .attr("class", "bar")
+            .attr("width", barWidth)
+            .attr("height", 0)
+            .attr("x", function(d, i) {
+                return x(i + 1);
+                })
+            .attr("y", height)
+            .attr("fill", "green")
+            .attr("opacity", 0.7)
+            .attr("stroke", "green");
+           
+
+        bars.merge(enter)
+            .transition()
+            .duration(frequency/2)
+            .attr("height", function(d) {
+                return barHeight(d.users);
+                })
+            .attr("y", function(d, i) {
+                
+            var h = barHeight(d.users);
+                return height - h;
+                })
+            .attr("x", function(d, i) {
+                return x(i + 1);
+                })
+            .attr("fill", "green")
+            .attr("opacity", 0.7)
+            .attr("stroke", "green");
+
+        bars.exit()
+            .transition()
+            .duration(frequency/2)
+            .attr("y", height)
+            .attr("fill", "white")
+            .remove();
+
+        var labels = svg.selectAll(".label")
+            .data(data, function(d) {
+                return d.timestamp; 
+            });
+
+        var fontSize = 10;
+            
+        var labelEnter = labels.enter().append("text")
+            .attr("class", "label")
+            .attr("font-size", fontSize)
+            .attr("x", function(d, i) {
+                return (x(i + 1))+(barWidth/2);
+            })
+            .style("text-anchor", "left")
+            .attr("y", height)
+            .attr("fill", "white");
+            
+        labels.merge(labelEnter)
+            .each(function(d, i) {
+                    
+            var textElement = d3.select(this);
+            textElement.text("");
+
+            var statement = "There are " + d.users + " peeps on here";
+                    
+            var words = statement.split(" ");
+            
+            var tspan = textElement.append("tspan");
+            
+            var line = 0;
+
+            words.forEach(function(word) {
+                var statement = tspan.text();
+                
+                tspan.text(statement + " " + word);
+                                
+                var domElement = tspan.node();
+                var tspanWidth = domElement.getBoundingClientRect().width;
+
+                        if (tspanWidth > barWidth) {
+                            line++;
+                            tspan.text(statement);
+                            tspan = textElement.append("tspan")
+                            .attr("y", function() {
+                
+                    var h = barHeight(d.users);
+                        return (height - h) + (fontSize * line);
+                    }) 
+                    .attr("x",function() {
+                        return (x(i + 1))+(barWidth/2);
+                    })
+                    .text(word);
+                    }
+     });
+
+     });
+                
 
 
-  });
-
-labels.exit().remove();
-
+            labels.exit()
+                .transition()
+                .duration(frequency/2)
+                .attr("y", height)
+                .remove();
+            
+    });
 }
 
-drawBoxes(data1);
+
+    fetchData();
+    setInterval(fetchData, frequency);
 
