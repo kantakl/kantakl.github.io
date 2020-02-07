@@ -113,7 +113,17 @@ d3.json(realTimeURL, function(error,users) {
                     
             var words = statement.split(" ");
             
-            var tspan = textElement.append("tspan");
+            var tspan = textElement.append("tspan")
+                .attr("y", function() {
+                
+                var h = barHeight(d.users);
+                    return (height - h) + (fontSize * line);
+                }) 
+                .attr("x",function() {
+                    return (x(i + 1))+(barWidth/2);
+                })
+                //.text(word);//
+                
             
             var line = 0;
 
@@ -131,14 +141,14 @@ d3.json(realTimeURL, function(error,users) {
                             tspan = textElement.append("tspan")
                             .attr("y", function() {
                 
-                    var h = barHeight(d.users);
-                        return (height - h) + (fontSize * line);
-                    }) 
-                    .attr("x",function() {
-                        return (x(i + 1))+(barWidth/2);
-                    })
-                    .text(word);
-                    }
+                            var h = barHeight(d.users);
+                                return (height - h) + (fontSize * line);
+                            }) 
+                            .attr("x",function() {
+                                return (x(i + 1))+(barWidth/2);
+                            })
+                            .text(word);
+                            }
      });
 
      });
@@ -157,4 +167,3 @@ d3.json(realTimeURL, function(error,users) {
 
     fetchData();
     setInterval(fetchData, frequency);
-
