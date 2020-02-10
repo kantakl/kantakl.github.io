@@ -23,14 +23,15 @@ var svg = d3.select("#chart")
   .attr("width", width)
   .attr("height", height);
 
+var domainValues = d3.range(1, dataMax + 1);
 
-var barWidth = width / dataMax;
+var x = d3.scaleBand()
+    .domain(domainValues.reverse())
+    .range([margin.left, margin.left + chartWidth])
+    .paddingInner(0.1)
+    .paddingOuter(0.1);
 
-var x = d3.scaleLinear()
-    .domain([dataMax, 1])
-    .range([margin.left, margin.left + chartWidth - barWidth]);
-
-
+var barWidth = x.bandwidth();
 
 function fetchData() {
 
@@ -68,6 +69,31 @@ svg.select("#y").call(yAxis)
       .call(yAxis);
 
 var xAxis = d3.axisBottom(x)
+      .tickFormat(function(d) {
+        var tickData = data[d - 1];
+
+        if (tickData)   {
+        
+        var now = new Date ();
+        var msAgo = now - tickData.timestamp;
+        var secondsAgo = Math.round(msAgo/1000)
+        var time = tickData.timestamp;
+        if (secondsAgo === 0)   {
+        return "Now"
+        }
+
+                else {
+                    var word = secondsAgo === 1 ? "second" : "seconds" ;
+                    return secondsAgo + " " + word + " ago";
+                }
+            }
+        
+        else {
+                return "";
+            }
+        });
+
+
 svg.select("#x")
       .attr("transform", "translate(0, " + (margin.top + chartHeight) + ")")
       .call(xAxis);
