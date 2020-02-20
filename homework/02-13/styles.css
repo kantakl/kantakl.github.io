@@ -1,0 +1,18 @@
+#x .tick text  {
+    fill: pink;
+    }
+    
+    #y .tick text{
+        fill: blue;
+    }
+
+    #explanation{
+        display:flex;
+        margin: 0 auto;
+      }
+
+      h1    {
+          text-align: center;
+      }
+    
+    
