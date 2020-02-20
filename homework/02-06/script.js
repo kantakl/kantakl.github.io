@@ -1,4 +1,5 @@
 var realtimeURL = "https://whiteboard.datawheel.us/api/google-analytics/realtime/random";
+
 var frequency = 1.5 * 1000; // 1 second
 
 var dataMax = 5;    //this means max bars that will show up are 5//
