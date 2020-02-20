@@ -56,7 +56,7 @@ function fetchData() {
             .attr("transform","rotate(-90)")
             .attr("x",-height/2)
             .attr("y",margin.left/2)
-            .text("Population");
+            .text("2018 Population");
 
                 });
                 
