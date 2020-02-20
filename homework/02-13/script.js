@@ -21,13 +21,13 @@ function fetchData() {
             .padding(0.5);
         
         var yScale = d3.scaleLinear()
-            .domain([100000, 1000000000000])
+            .domain([100000, 8000000])
             .range([height-margin.bottom, margin.top]);
 
         var xAxis = svg.append("g")
             .attr("class","axis")
             .attr("transform", `translate(0,${height-margin.bottom})`)
-            .call(d3.axisBottom().scale(xScale).tickFormat(d3.format("Y")));
+            .call(d3.axisBottom().scale(xScale));
 
         var yAxis = svg.append("g")
             .attr("class","axis")
@@ -35,7 +35,7 @@ function fetchData() {
             .call(d3.axisLeft().scale(yScale));
 
         var bar = svg.selectAll("rect")
-            .data(data)
+            .data(data.data)
             .enter()
             .append("rect")
               .attr("x",function(d) { return xScale(d.State); })
