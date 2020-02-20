@@ -42,7 +42,8 @@ function fetchData() {
               .attr("y", function(d) { return yScale(d.Population); })
               .attr("width",xScale.bandwidth())
               .attr("height", function(d) { return height - margin.bottom - yScale(d.Population); })
-              .attr("fill","green");
+              .attr("fill","green")
+              .attr("opacity", 0.7);
 
         var xAxisLabel = svg.append("text")
             .attr("class","axisLabel")
@@ -54,7 +55,7 @@ function fetchData() {
             .attr("class","axisLabel")
             .attr("transform","rotate(-90)")
             .attr("x",-height/2)
-            .attr("y",margin.left/3)
+            .attr("y",margin.left/2)
             .text("Population");
 
                 });
