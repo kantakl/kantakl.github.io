@@ -14,11 +14,21 @@
     <body>
 
         <svg id="chart">
+            <defs>
+                <linearGradient id="colorGradient">
+
+                </linearGradient>
+            </defs>
             
             <g id="shapes"></g>
             <g id="x"></g>
             <g id="y"></g>
-
+            <g id="scale">
+                <rect id="scaleRect" fill="url(#colorGradient)"/>
+                <g id="scaleAxis"></g>
+            </g>
+            <g id="legend"></g>
+            
         </svg>
 
         <script src="./script.js"></script>

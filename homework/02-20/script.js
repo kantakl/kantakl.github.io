@@ -1,7 +1,7 @@
 var realtimeURL = "https://whiteboard.datawheel.us/api/google-analytics/realtime/random";
-      var frequency = 1 * 1000; // 1 seconds
+      var frequency = 5 * 1000; // 1 seconds
 
-      var dataMax = 5;
+      var dataMax = 10;
       var data = [];
 
       var width = window.innerWidth;
@@ -9,8 +9,8 @@ var realtimeURL = "https://whiteboard.datawheel.us/api/google-analytics/realtime
 
       var margin = {
         top: 20,
-        right: 20,
-        bottom: 50,
+        right: 150,
+        bottom: 100,
         left: 50
       };
 
@@ -20,6 +20,29 @@ var realtimeURL = "https://whiteboard.datawheel.us/api/google-analytics/realtime
       var svg = d3.select("#chart")
         .attr("width", width)
         .attr("height", height);
+
+     var scaleWidth = 300;
+     var scaleHeight = 30;
+     var scaleX = margin.left + chartWidth / 2 - (scaleWidth / 2);
+     var scaleY = margin.top + chartHeight + 40;
+
+     var scale = svg.select("#scale")
+        .attr("transform", "translate(" + scaleX + ", " + scaleY + ")");
+
+    scale.select("#scaleRect")
+      .attr("width", scaleWidth)
+      .attr("height", scaleHeight);
+
+    var legendX = margin.left + chartWidth;
+
+    var legendY = margin.top;
+
+    var legend = svg.select("#legend")
+      .attr("transform", "translate(" + legendX + ", " + legendY + ")");
+
+    var legendSize = 20;
+    var legendPadding = 10;
+     
 
       var domainValues = d3.range(1, dataMax + 1);
 
@@ -43,9 +66,80 @@ var realtimeURL = "https://whiteboard.datawheel.us/api/google-analytics/realtime
           data.unshift(dataObject);
           if (data.length > dataMax) data.pop();
 
+          if (data.length === dataMax) clearInterval(myInterval);
+
+          var legendData = data.map(function(d) {
+              return d.users;
+          });
+
+          legendData = legendData.filter(function (d, i)    {
+              return legendData.indexOf(d) === i;
+          })
+          legendData = legendData.sort(function(a, b)   {
+              return a - b;
+          });
+
+
           var maximum = d3.max(data, function(d) {
             return d.users;
           });
+
+          var barColor = d3.scaleSequential(d3.interpolateInferno)
+          .domain([0, maximum]);
+
+          var legendRects = legend.selectAll("rect")
+          .data(legendData);
+  
+    var legendRectsEnter = legendRects.enter().append("rect");
+  
+      legendRects.merge(legendRectsEnter)
+          .attr("x", legendPadding)
+          .attr("y", function(d, i) {
+              return i * legendSize + i * legendPadding;
+          })
+          .attr("fill", barColor)
+          .attr("width", legendSize)
+          .attr("height", legendSize);
+
+          var legendTexts = legend.selectAll("text")
+          .data(legendData);
+        
+        var legendTextsEnter = legendTexts.enter().append("text")
+          .attr("baseline-shift", "-100%");
+        
+        legendTexts.merge(legendTextsEnter)
+          .attr("x", legendPadding + legendSize + legendPadding / 2)
+          .attr("y", function(d, i) {
+            return i * legendSize + i * legendPadding;
+          })
+          .text(function(d) {
+            return d;
+          });
+
+
+
+          var stops = d3.range(0, 1.25, 0.25);
+
+          svg.select("#colorGradient").selectAll("stop")
+            .data(stops).enter()
+            .append("stop")
+                .attr("offset", function (d)    {
+                    return d * 100 + "%";
+                })
+                .attr("stop-color", function(d) {
+                    return barColor(d * maximum);
+                });
+        
+        var gradientScale = d3.scaleLinear()
+            .domain([0, maximum])
+            .range([0, scaleWidth]);
+
+        var scaleAxis = d3.axisBottom(gradientScale);
+
+        scale.select("#scaleAxis")
+            .attr("transform", "translate(0, " + scaleHeight + ")")
+            .transition().duration(frequency/2)
+            .call(scaleAxis);
 
           var barHeight = d3.scaleLinear()
             .domain([0, maximum])
@@ -102,6 +196,9 @@ var realtimeURL = "https://whiteboard.datawheel.us/api/google-analytics/realtime
             .attr("class", "bar")
             .attr("width", barWidth)
             .call(zeroState)
+            .attr("fill", function(d)   {
+                return barColor(d.users);
+            })
             .attr("x", function(d, i) {
               return x(i + 1);
             });
@@ -128,4 +225,4 @@ var realtimeURL = "https://whiteboard.datawheel.us/api/google-analytics/realtime
       }
 
       fetchData();
-      setInterval(fetchData, frequency);
+      var myInterval = setInterval(fetchData, frequency);
