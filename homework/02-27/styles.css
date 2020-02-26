@@ -1,0 +1,12 @@
+#x .tick text  {
+    fill: pink;
+    }
+    
+    #y .tick text{
+        fill: blue;
+    }
+    
+    #scaleRect {
+        stroke: black;
+      }
+    
