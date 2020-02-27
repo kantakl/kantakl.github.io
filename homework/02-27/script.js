@@ -1,228 +1,122 @@
-var realtimeURL = "https://whiteboard.datawheel.us/api/google-analytics/realtime/random";
-      var frequency = 5 * 1000; // 1 seconds
+var url = "https://datausa.io/api/data?drilldowns=State&measures=Population&year=latest";
 
-      var dataMax = 10;
-      var data = [];
+var data = [];
 
-      var width = window.innerWidth;
-      var height = window.innerHeight;
+        
+var margin = {top: 50, left: 150, right: 50, bottom: 150};
+var width = window.innerWidth;
+var height = window.innerHeight;
 
-      var margin = {
-        top: 20,
-        right: 150,
-        bottom: 100,
-        left: 50
-      };
 
-      var chartWidth = width - margin.left - margin.right;
-      var chartHeight = height - margin.top - margin.bottom;
+var chartWidth = width - margin.left - margin.right;
+var chartHeight = height - margin.top - margin.bottom;
 
-      var svg = d3.select("#chart")
-        .attr("width", width)
-        .attr("height", height);
+var svg = d3.select("#chart")
+  .attr("width", width)
+  .attr("height", height);
 
-     var scaleWidth = 300;
-     var scaleHeight = 30;
-     var scaleX = margin.left + chartWidth / 2 - (scaleWidth / 2);
-     var scaleY = margin.top + chartHeight + 40;
 
-     var scale = svg.select("#scale")
-        .attr("transform", "translate(" + scaleX + ", " + scaleY + ")");
+var scaleWidth = 400;
+var scaleHeight = 20;
+var scaleX = margin.left + chartWidth / 2 - (scaleWidth / 2);
+var scaleY = margin.top + chartHeight + 40;
+            
+var scale = svg.select("#scale")
+  .attr("transform", "translate(" + scaleX + ", " + scaleY + ")");
+            
+scale.select("#scaleRect")
+  .attr("width", scaleWidth)
+  .attr("height", scaleHeight); //initially had everything dictating size and scale inside function, not issue//
 
-    scale.select("#scaleRect")
-      .attr("width", scaleWidth)
-      .attr("height", scaleHeight);
+function fetchData() {
 
-    var legendX = margin.left + chartWidth;
+  d3.json(url, function(error, data) {
+        console.log(data);
 
-    var legendY = margin.top;
 
-    var legend = svg.select("#legend")
-      .attr("transform", "translate(" + legendX + ", " + legendY + ")");
 
-    var legendSize = 20;
-    var legendPadding = 10;
+            var xScale = d3.scaleBand()
+                 .domain(["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut",
+                 "Delaware", "District of Columbia", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois",
+                 "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts",
+                 "Michicgan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire",
+                 "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio",
+                 "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
+                 "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", 
+                 "Wisconsin", "Wyoming", "Puerto Rico"])
+                 .rangeRound([margin.left, width-margin.right])
+                 .padding(0.5);
+
+                 var yScale = d3.scaleLinear()
+                 .domain([10000, 50000000])
+                 .range([height-margin.bottom, margin.top]);
      
+             var xAxis = svg.append("g")
+                 .attr("class","axis")
+                 .attr("transform", `translate(0,${height-margin.bottom})`)
+                 .call(d3.axisBottom().scale(xScale));
+     
+             var yAxis = svg.append("g")
+                 .attr("class","axis")
+                 .attr("transform", `translate(${margin.left},0)`)
+                 .call(d3.axisLeft().scale(yScale));
 
-      var domainValues = d3.range(1, dataMax + 1);
+                 var maximum = d3.max(data, function(d) {
+                    return d.Population;
+                    
+                  });
 
-      var x = d3.scaleBand()
-        .domain(domainValues.reverse())
-        .range([margin.left, margin.left + chartWidth])
-        .paddingInner(0.2)
-        .paddingOuter(0.1);
+                  function rainbowColors(t) {
+                    return d3.hsl(t * 360, 1, 0.5) + "";
+                  }
 
-      var barWidth = x.bandwidth();
+                 var barColor = d3.scaleSequential(rainbowColors)   //i think the maximum function is working??//
+                    .domain([0, maximum])
 
-      function fetchData() {
+                    var stops = d3.range(0, 1.25, 0.25);
 
-        d3.json(realtimeURL, function(error, users) {
-
-          var dataObject = {
-            users: users,
-            timestamp: new Date()
-          };
-
-          data.unshift(dataObject);
-          if (data.length > dataMax) data.pop();
-
-          if (data.length === dataMax) clearInterval(myInterval);
-
-          var legendData = data.map(function(d) {
-              return d.users;
-          });
-
-          legendData = legendData.filter(function (d, i)    {
-              return legendData.indexOf(d) === i;
-          })
-          legendData = legendData.sort(function(a, b)   {
-              return a - b;
-          });
+                    svg.select("#colorGradient").selectAll("stop")
+                      .data(stops).enter()
+                      .append("stop")
+                        .attr("offset", function(d) {
+                          return d * 100 + "%";
+                        })
+                        .attr("stop-color", function(d) {
+                          return barColor(d * maximum);
+                        });
 
 
-          var maximum = d3.max(data, function(d) {
-            return d.users;
-          });
-
-          var barColor = d3.scaleSequential(d3.interpolateInferno)
-          .domain([0, maximum]);
-
-          var legendRects = legend.selectAll("rect")
-          .data(legendData);
-  
-    var legendRectsEnter = legendRects.enter().append("rect");
-  
-      legendRects.merge(legendRectsEnter)
-          .attr("x", legendPadding)
-          .attr("y", function(d, i) {
-              return i * legendSize + i * legendPadding;
-          })
-          .attr("fill", barColor)
-          .attr("width", legendSize)
-          .attr("height", legendSize);
-
-          var legendTexts = legend.selectAll("text")
-          .data(legendData);
-        
-        var legendTextsEnter = legendTexts.enter().append("text")
-          .attr("baseline-shift", "-100%");
-        
-        legendTexts.merge(legendTextsEnter)
-          .attr("x", legendPadding + legendSize + legendPadding / 2)
-          .attr("y", function(d, i) {
-            return i * legendSize + i * legendPadding;
-          })
-          .text(function(d) {
-            return d;
-          });
-
-
-
-          var stops = d3.range(0, 1.25, 0.25);
-
-          svg.select("#colorGradient").selectAll("stop")
-            .data(stops).enter()
-            .append("stop")
-                .attr("offset", function (d)    {
-                    return d * 100 + "%";
-                })
-                .attr("stop-color", function(d) {
-                    return barColor(d * maximum);
-                });
-        
-        var gradientScale = d3.scaleLinear()
-            .domain([0, maximum])
-            .range([0, scaleWidth]);
-
-        var scaleAxis = d3.axisBottom(gradientScale);
-
-        scale.select("#scaleAxis")
-            .attr("transform", "translate(0, " + scaleHeight + ")")
-            .transition().duration(frequency/2)
-            .call(scaleAxis);
-
-          var barHeight = d3.scaleLinear()
-            .domain([0, maximum])
-            .range([0, chartHeight]);
-
-          var y = d3.scaleLinear()
-            .domain([0, maximum])
-            .range([margin.top + chartHeight, margin.top]);
-
-          var yAxis = d3.axisLeft(y);
-          svg.select("#y")
-            .attr("transform", "translate(" + margin.left + ", 0)")
-            .transition().duration(frequency / 2)
-            .call(yAxis);
-
-          var xAxis = d3.axisBottom(x)
-            .tickFormat(function(d) {
-              var tickData = data[d - 1];
-              if (tickData) {
-                var now = new Date();
-                var msAgo = now - tickData.timestamp;
-                var secondsAgo = Math.round(msAgo / 1000);
-                if (secondsAgo === 0) {
-                  return "Now";
-                }
-                else {
-                  var word = secondsAgo === 1 ? "second" : "seconds";
-                  return secondsAgo + " " + word + " ago";
-                }
-              }
-              else {
-                return "";
-              }
-            });
-
-          svg.select("#x")
-            .attr("transform", "translate(0, " + (margin.top + chartHeight) + ")")
-            .call(xAxis);
-
-          var bars = svg.select("#shapes").selectAll(".bar")
-            .data(data, function(d) {
-              return d.timestamp;
-            });
-
-          function zeroState(selection) {
-            selection
-              .attr("height", 0)
-              .attr("y", function(d) {
-                return y(d.users);
-              });
-          }
-
-          var enter = bars.enter().append("rect")
-            .attr("class", "bar")
-            .attr("width", barWidth)
-            .call(zeroState)
-            .attr("fill", function(d)   {
-                return barColor(d.users);
-            })
-            .attr("x", function(d, i) {
-              return x(i + 1);
-            });
-
-          bars.merge(enter)
-            .transition().duration(frequency / 2)
-            .attr("height", function(d) {
-              return barHeight(d.users);
-            })
-            .attr("y", function(d) {
-              return y(d.users);
-            })
-            .attr("x", function(d, i) {
-              return x(i + 1);
-            });
-
-          bars.exit()
-            .transition().duration(frequency / 2)
-            .call(zeroState)
-            .remove();
-
-        });
-
-      }
-
-      fetchData();
-      var myInterval = setInterval(fetchData, frequency);
+     
+             var bar = svg.selectAll("rect")
+                 .data(data.data)
+                 .enter()
+                 .append("rect")
+                   .attr("x",function(d) { return xScale(d.State); })
+                   .attr("y", function(d) { return yScale(d.Population); })
+                   .attr("width",xScale.bandwidth())
+                   .attr("height", function(d) { return height - margin.bottom - yScale(d.Population); })
+                   .attr("fill", barColor); //with or without function, result is the same gray//
+                   /*function(d) {
+                    return barColor(d.Population);    //i think this may be wrong but any change leads to white screen of death//
+                  })*/
+     
+             var xAxisLabel = svg.append("text")
+                 .attr("class","axisLabel")
+                 .attr("x", width/2)
+                 .attr("y", height-margin.bottom/2)
+                 .text("State");
+     
+             var yAxisLabel = svg.append("text")
+                 .attr("class","axisLabel")
+                 .attr("transform","rotate(-90)")
+                 .attr("x",-height/2)
+                 .attr("y",margin.left/2)
+                 .text("2018 Population");
+     
+                     });
+                     
+     
+     }
+     
+     
+     fetchData();
