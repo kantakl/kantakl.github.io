@@ -47,7 +47,7 @@ function fetchData() {
                  .rangeRound([margin.left, width-margin.right])
                  .padding(0.5);
 
-                 var yScale = d3.scaleLinear()
+              var yScale = d3.scaleLinear()
                  .domain([10000, 50000000])
                  .range([height-margin.bottom, margin.top]);
      
@@ -61,25 +61,25 @@ function fetchData() {
                  .attr("transform", `translate(${margin.left},0)`)
                  .call(d3.axisLeft().scale(yScale));
 
-                 var maximum = d3.max(data, function(d) {
+                 var maximum = d3.max(data.data, function(d) {
                     return d.Population;
                     
                   });
 
-                  function rainbowColors(t) {
+                  function interpolateInferno(t) {
                     return d3.hsl(t * 360, 1, 0.5) + "";
                   }
 
-                 var barColor = d3.scaleSequential(rainbowColors)   //i think the maximum function is working??//
-                    .domain([0, maximum])
+          var barColor = d3.scaleSequential(d3.interpolateInferno)
+              .domain([0, maximum]);
 
-                    var stops = d3.range(0, 1.25, 0.25);
+          var stops = d3.range(0, 1, 0.25);
 
                     svg.select("#colorGradient").selectAll("stop")
                       .data(stops).enter()
                       .append("stop")
                         .attr("offset", function(d) {
-                          return d * 100 + "%";
+                          return d * 75 + "%";
                         })
                         .attr("stop-color", function(d) {
                           return barColor(d * maximum);
@@ -95,10 +95,9 @@ function fetchData() {
                    .attr("y", function(d) { return yScale(d.Population); })
                    .attr("width",xScale.bandwidth())
                    .attr("height", function(d) { return height - margin.bottom - yScale(d.Population); })
-                   .attr("fill", barColor); //with or without function, result is the same gray//
-                   /*function(d) {
-                    return barColor(d.Population);    //i think this may be wrong but any change leads to white screen of death//
-                  })*/
+                   .attr("fill", function(d) {
+                    return barColor(d.Population);   
+                  })
      
              var xAxisLabel = svg.append("text")
                  .attr("class","axisLabel")
