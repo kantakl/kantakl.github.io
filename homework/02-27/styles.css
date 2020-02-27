@@ -1,12 +1,12 @@
-#x .tick text  {
-    fill: pink;
-    }
-    
-    #y .tick text{
-        fill: blue;
+.tick text  {
+    fill:steelblue;
     }
     
     #scaleRect {
         stroke: black;
+        padding-top: 100;
       }
     
+  h1{
+    text-align: center;
+  }
