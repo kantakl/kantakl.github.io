@@ -2,24 +2,25 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://unpkg.com/topojson@3"></script>
     
-    <title>United States Bigfoot Sightings</title>
+    <title>History of Bigfoot Sightings in the USA</title>
     
     <link href="./styles.css" rel="stylesheet">
 
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-
         <div id="banner">
         
-        <h1>American Bigfoot Sightings</h1>
+        <h1>Bigfoots Sightings in the United States</h1>
         
         <p>
-           Sasquatch, Skunk-Ape, Bigfoot...even if you've never seen one for yourself, you've probably
-           heard tell of the elusive creature.
+            Sasquatch, Skunk-Ape, Bigfoot; this elusive creature has become
+            a well-known cryptid in North America over the past 100+ years 
+            worth of recorded sightings.
         </p>
         
         <p>
-            Created by L. Kantak!
+            Created by L. Kantak
         </p>
         </div>
 
@@ -29,6 +30,18 @@
   <body>
 
     <script src="./script.js"></script>
+
+
+    <div class="section">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+            Donec eleifend egestas aliquet. Suspendisse non felis sed felis 
+            pellentesque convallis quis eget arcu. Aliquam eget dolor commodo 
+            eros rhoncus egestas. Nullam dapibus eget diam nec accumsan. Fusce 
+            tincidunt augue a libero semper vulputate. Fusce vel metus sit amet 
+            dolor pulvinar varius sit amet vehicula nibh. Sed ultricies interdum 
+            tellus, in varius augue eleifend vel.</p>
+        <svg id="chart1"></svg>
+      </div>
 
       <div id="tooltip"></div>
 
