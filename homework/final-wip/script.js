@@ -1,6 +1,6 @@
 var promises = [
     d3.csv("./bfro_reports_geocoded.csv",parseCSV), 
-    d3.json("./worldgeo.json")
+    d3.json("./usa.json")
 ];
 
 Promise.all(promises).then(function(data) {
@@ -21,7 +21,7 @@ var svg = d3.select("#chart")
     .attr("height", height);
 
 
-var projection = d3.geoMercator()
+var projection = d3.geoAlbersUsa()
     .translate([width/2, height/2])
     .scale(100);
 
