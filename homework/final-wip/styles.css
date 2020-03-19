@@ -23,7 +23,7 @@ body {
   }
   
   .section svg {
-    border: 1px solid red;
+    border: 1px gray;
     flex: 2;
     height: 300px;
     margin: 20px;
