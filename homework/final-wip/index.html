@@ -1,13 +1,14 @@
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
-    <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://unpkg.com/topojson@3"></script>
     
     <title>History of Bigfoot Sightings in the USA</title>
     
-    <link href="./styles.css" rel="stylesheet">
+    <link href="./styles/styles.css" rel="stylesheet">
+    <script src="lib/d3.js"></script>
 
         <div id="banner">
         
@@ -15,8 +16,7 @@
         
         <p>
             Sasquatch, Skunk-Ape, Bigfoot; this elusive creature has become
-            a well-known cryptid in North America over the past 100+ years 
-            worth of recorded sightings.
+            a well-known cryptid in North America over the past 100+ years. 
         </p>
         
         <p>
@@ -42,6 +42,10 @@
             tellus, in varius augue eleifend vel.</p>
         <svg id="chart1"></svg>
       </div>
+
+      <div id="slider">
+        <input id="selectYear" type="range" step=1>
+    </div>
 
       <div id="tooltip"></div>
 
