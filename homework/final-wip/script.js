@@ -13,10 +13,10 @@ Promise.all(promises).then(function(data) {
     
     console.log(data)
     
-    var width = document.querySelector("#chart").clientWidth;
-    var height = document.querySelector("#chart").clientHeight;
+    var width = document.querySelector("#chart1").clientWidth;
+    var height = document.querySelector("#chart1").clientHeight;
     
-    var svg = d3.select("#chart")
+    var svg = d3.select("#chart1")
         .append("svg")
         .attr("width", width)
         .attr("height", height);
@@ -146,7 +146,7 @@ Promise.all(promises).then(function(data) {
         })
     
     
-    var tooltip = d3.select("#chart")
+    var tooltip = d3.select("#chart1")
         .append("div")
         .attr("class","tooltip");
     
