@@ -49,8 +49,9 @@ Promise.all(promises).then(function(data) {
 
     var yearLabel = svg.append("text")
         .attr("class", "yearLabel")
-        .attr("x", 25)
-        .attr("y", height - 100)
+        .attr("x", 30)
+        .attr("y", height - 50)
+        .attr("opacity", 0.7)
         .text(selectedYear);
     
 
