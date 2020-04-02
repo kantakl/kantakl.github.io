@@ -89,7 +89,7 @@ var selectedYear = slider.property("value");
             }).attr("cy", function(d) {
                 var proj = projection([d.longitude, d.latitude]);
                 return proj[1];            
-            }).attr("r", 7.5)
+            }).attr("r", 8.5)
             .attr("opacity", 0.7)
             .attr("fill", "#909d33");    
             
