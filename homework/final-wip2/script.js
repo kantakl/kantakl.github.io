@@ -34,30 +34,31 @@ Promise.all(promises).then(function(data) {
             .attr("class","state")
             .attr("d", path);
 
-    bigfootData = bigfootData.sort(function(a,b) { return a.year - b.year; });
+bigfootData = bigfootData.sort(function(a,b) { return a.year - b.year; });
 
 
-    var slider = d3.select("#selectYear");
+/*this should set the min/max for the slider, but it still is not working?*/
+var slider = d3.select("#selectYear");
 
     slider
         .property("min", bigfootData[0].year)
         .property("max", bigfootData[bigfootData.length-1].year)
         .property("value", bigfootData[bigfootData.length-1].year);
 
-    var selectedYear = slider.property("value");
+var selectedYear = slider.property("value");
 
 
     var yearLabel = svg.append("text")
         .attr("class", "yearLabel")
-        .attr("x", 950)
+        .attr("x", 1000)
         .attr("y", height - 10)
         .attr("opacity", 0.7)
         .text(selectedYear);
     
 
     var rScale = d3.scaleSqrt()
-        .domain([0, 50])
-        .range([0,25]);
+        .domain([0, 40])
+        .range([0,15]);
 
 
     function updateMap(year) {
@@ -78,7 +79,7 @@ Promise.all(promises).then(function(data) {
                 return proj[1];            
             }).attr("r", 0)
             .attr("opacity", 0.7)
-            .attr("fill", "#CC0000")
+            .attr("fill", "#909d33")
         .merge(c)
             .transition()
             .duration(1000)
@@ -88,9 +89,9 @@ Promise.all(promises).then(function(data) {
             }).attr("cy", function(d) {
                 var proj = projection([d.longitude, d.latitude]);
                 return proj[1];            
-            }).attr("r", 0.5)
+            }).attr("r", 5.5)
             .attr("opacity", 0.7)
-            .attr("fill", "#CC0000");    
+            .attr("fill", "#909d33");    
             
         c.exit()
             .transition()
@@ -108,10 +109,10 @@ Promise.all(promises).then(function(data) {
                 tooltip.style("visibility","visible")
                     .style("left", cx + "px")
                     .style("top", cy + "px")
-                    .html(d.location + "<br>" + d.date.toLocaleDateString("en-US"));
+                    .html(d.county + "<br>" + d.date.toLocaleDateString("en-US"));
 
                 svg.selectAll("circle")
-                    .attr("opacity",0.2);
+                    .attr("opacity",0.5);
 
                 d3.select(this)
                     .attr("opacity",0.7);
