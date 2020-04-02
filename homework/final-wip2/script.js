@@ -42,8 +42,8 @@ var slider = d3.select("#selectYear");
 
     slider
         .property("min", bigfootData[0].year)
-        .property("max", bigfootData[bigfootData.length-980].year)
-        .property("value", bigfootData[bigfootData.length-980].year);
+        .property("max", bigfootData[bigfootData.length-1].year)
+        .property("value", bigfootData[bigfootData.length-1].year);
 
 var selectedYear = slider.property("value");
 
