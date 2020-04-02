@@ -21,7 +21,7 @@ Promise.all(promises).then(function(data) {
 
     var projection = d3.geoAlbersUsa()
         .translate([width/2, height/2])
-        .scale(1100);
+        .scale(1250);
 
 
     var path = d3.geoPath().projection(projection);
