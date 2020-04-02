@@ -104,3 +104,14 @@ html, body {
     flex: none;
   }
 }
+
+footer {
+  background-color: rgb(136, 136, 136);
+  background-position: center;
+  background-size: cover;
+  padding: 17vh 20px;
+  text-align: center;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.5em;
+  color: rgb(255, 255, 255);
+}
