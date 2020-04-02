@@ -37,7 +37,7 @@ Promise.all(promises).then(function(data) {
 bigfootData = bigfootData.sort(function(a,b) { return a.year - b.year; });
 
 
-/*this should set the min/max for the slider, but it still is not working?*/
+/*slider works!! max setting was the issue. had to clean csv, was referencing to wrong cells in the code*/
 var slider = d3.select("#selectYear");
 
     slider
