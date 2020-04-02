@@ -69,14 +69,14 @@ html, body {
 
 .tooltip {
   position: absolute;
-  left: 1px;
+  left: 2px;
   top: 1px;
   visibility: hidden;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: bold;
   font-size: 11pt;
   background-color:rgba(255,255,255,0.8);
-  padding: 2px;
+  padding: 5px;
   pointer-events: none;
 }
 
@@ -91,6 +91,7 @@ html, body {
 
 .section div {
   border: 1px solid rgb(0, 0, 0);
+  background-color:  rgb(38, 82, 24);
   flex: 2;
   height: 300px;
   margin: 20px;
