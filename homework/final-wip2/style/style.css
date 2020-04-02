@@ -47,7 +47,7 @@ html, body {
 .state {
   fill: rgb(245, 214, 188);
   stroke:  rgb(221, 183, 151);
-  stroke-width: 1;
+  stroke-width: 0.5;
 }
 
 #slider {
