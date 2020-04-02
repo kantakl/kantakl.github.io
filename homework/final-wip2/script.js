@@ -19,9 +19,9 @@ Promise.all(promises).then(function(data) {
         .attr("height", height);
 
 
-    var projection = d3.geoAlbers()
+    var projection = d3.geoAlbersUsa()
         .translate([width/2, height/2])
-        .scale(1000);
+        .scale(1100);
 
 
     var path = d3.geoPath().projection(projection);
@@ -49,8 +49,8 @@ Promise.all(promises).then(function(data) {
 
     var yearLabel = svg.append("text")
         .attr("class", "yearLabel")
-        .attr("x", 150)
-        .attr("y", height - 50)
+        .attr("x", 950)
+        .attr("y", height - 10)
         .attr("opacity", 0.7)
         .text(selectedYear);
     
