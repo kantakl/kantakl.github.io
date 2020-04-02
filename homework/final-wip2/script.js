@@ -78,7 +78,7 @@ var selectedYear = slider.property("value");
                 var proj = projection([d.longitude, d.latitude]);
                 return proj[1];            
             }).attr("r", 0)
-            .attr("opacity", 0.7)
+            .attr("opacity", 0.2)
             .attr("fill", "#909d33")
         .merge(c)
             .transition()
@@ -104,7 +104,7 @@ var selectedYear = slider.property("value");
         svg.selectAll("circle")
             .on("mouseover", function(d) {
                 var cx = +d3.select(this).attr("cx") + 15;
-                var cy = +d3.select(this).attr("cy") - 15;
+                var cy = +d3.select(this).attr("cy") - 25;
 
                 tooltip.style("visibility","visible")
                     .style("left", cx + "px")
@@ -112,7 +112,7 @@ var selectedYear = slider.property("value");
                     .html(d.county + "<br>" + d.date.toLocaleDateString("en-US"));
 
                 svg.selectAll("circle")
-                    .attr("opacity",0.5);
+                    .attr("opacity",0.2);
 
                 d3.select(this)
                     .attr("opacity",0.7);
