@@ -68,7 +68,7 @@ var selectedYear = slider.property("value");
         });
 
         var c = svg.selectAll("circle")
-            .data(filtered_data, function(d) { return d.observed; });
+            .data(filtered_data, function(d) { return d.state; });
 
         c.enter().append("circle")
             .attr("cx", function(d) {
@@ -109,7 +109,7 @@ var selectedYear = slider.property("value");
                 tooltip.style("visibility","visible")
                     .style("left", cx + "px")
                     .style("top", cy + "px")
-                    .html(d.county + "<br>" + d.date.toLocaleDateString("en-US"));
+                    .html(d.county + "<br>" + d.state + "<br>" + d.date.toLocaleDateString("en-US"));
 
                 svg.selectAll("circle")
                     .attr("opacity",0.2);
@@ -158,6 +158,7 @@ var selectedYear = slider.property("value");
 function parseCSV(data) {
     var d = {};
     d.observed = data.observed;
+    d.state = data.state;
     d.county = data.county;
     d.latitude = +data.latitude;
     d.longitude = +data.longitude;
