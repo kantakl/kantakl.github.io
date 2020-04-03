@@ -68,7 +68,8 @@ var selectedYear = slider.property("value");
         });
 
         var c = svg.selectAll("circle")
-            .data(filtered_data, function(d) { return d.state; });
+            .data(filtered_data, function(d) { return d.date; }); /*check here for circles index in data array d,i combine index plus current year
+            return d.year + "" i*/
 
         c.enter().append("circle")
             .attr("cx", function(d) {
@@ -95,7 +96,7 @@ var selectedYear = slider.property("value");
             
         c.exit()
             .transition()
-            .duration(1000)
+            .duration(900)
             .attr("r", 0)
             .remove();
 
@@ -109,7 +110,7 @@ var selectedYear = slider.property("value");
                 tooltip.style("visibility","visible")
                     .style("left", cx + "px")
                     .style("top", cy + "px")
-                    .html(d.county + "<br>" + d.state + "<br>" + d.date.toLocaleDateString("en-US"));
+                    .html(d.county + "<br>" + d.observed + "<br>" + d.date.toLocaleDateString("en-US"));
 
                 svg.selectAll("circle")
                     .attr("opacity",0.2);
@@ -169,6 +170,3 @@ function parseCSV(data) {
     return d;
 
 }
-
-
-
