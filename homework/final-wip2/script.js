@@ -21,7 +21,7 @@ Promise.all(promises).then(function(data) {
 
     var projection = d3.geoAlbersUsa()
         .translate([width/2, height/2])
-        .scale(1250);
+        .scale(1000);
 
 
     var path = d3.geoPath().projection(projection);
@@ -47,10 +47,12 @@ var slider = d3.select("#selectYear");
 
 var selectedYear = slider.property("value");
 
+var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+
 
     var yearLabel = svg.append("text")
         .attr("class", "yearLabel")
-        .attr("x", 1000)
+        .attr("x", 950)
         .attr("y", height - 10)
         .attr("opacity", 0.7)
         .text(selectedYear);
@@ -80,7 +82,7 @@ var selectedYear = slider.property("value");
                 return proj[1];            
             }).attr("r", 0)
             .attr("opacity", 0.2)
-            .attr("fill", "#909d33")
+            .attr("fill", function(d) { return colorScale(d.season); })
         .merge(c)
             .transition()
             .duration(1000)
@@ -92,7 +94,7 @@ var selectedYear = slider.property("value");
                 return proj[1];            
             }).attr("r", 8.5)
             .attr("opacity", 0.7)
-            .attr("fill", "#909d33");    
+            .attr("fill", function(d) { return colorScale(d.season); })
             
         c.exit()
             .transition()
@@ -119,7 +121,7 @@ var selectedYear = slider.property("value");
                     .attr("opacity",0.7);
 
             }).on("mouseout", function() {
-                tooltip.style("visibility","hidden");
+                tooltip.style("visibility","visible");
 
                 svg.selectAll("circle")
                     .attr("opacity",0.7);
@@ -163,7 +165,7 @@ function parseCSV(data) {
     d.county = data.county;
     d.latitude = +data.latitude;
     d.longitude = +data.longitude;
-    d.season = +data.season["Season"]; 
+    d.season = +data.season; 
     d.date = new Date(data.date);
     d.year = d.date.getFullYear();
 
