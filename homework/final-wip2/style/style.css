@@ -76,6 +76,9 @@ html, body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   font-size: 11pt;
+  width:350px;
+  height:350px;
+  overflow-y: scroll;
   color: rgb(230, 230, 230);
   background-color: rgba(108, 129, 113, 0.8);
   padding: 5px;
@@ -93,6 +96,7 @@ html, body {
 
 .section div {
   fill: rgb(38, 82, 24);
+  background-color: rgba(108, 129, 113, 0.8);
   flex: 2;
   height: 350px;
   margin: 20px;
