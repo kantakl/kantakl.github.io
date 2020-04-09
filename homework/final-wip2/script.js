@@ -11,12 +11,15 @@ Promise.all(promises).then(function(data) {
 
     var usa = data[1];
 
+
     var width = document.querySelector("#chart").clientWidth;
     var height = document.querySelector("#chart").clientHeight;
     var svg = d3.select("#chart")
         .append("svg")
         .attr("width", width)
         .attr("height", height);
+
+
 
 
     var projection = d3.geoAlbersUsa()
@@ -34,10 +37,10 @@ Promise.all(promises).then(function(data) {
             .attr("class","state")
             .attr("d", path);
 
+
 bigfootData = bigfootData.sort(function(a,b) { return a.year - b.year; });
 
 
-/*slider works!! max setting was the issue. had to clean csv, was referencing to wrong cells in the code*/
 var slider = d3.select("#selectYear");
 
     slider
@@ -47,7 +50,7 @@ var slider = d3.select("#selectYear");
 
 var selectedYear = slider.property("value");
 
-var colorScale = d3.scaleOrdinal(d3.schemeDark2);
+var colorScale = d3.scaleOrdinal(d3.schemeTableau10);
 
 
     var yearLabel = svg.append("text")
@@ -62,6 +65,7 @@ var colorScale = d3.scaleOrdinal(d3.schemeDark2);
         .domain([0, 40])
         .range([0,15]);
 
+    
 
     function updateMap(year) {
 
@@ -92,7 +96,7 @@ var colorScale = d3.scaleOrdinal(d3.schemeDark2);
             }).attr("cy", function(d) {
                 var proj = projection([d.longitude, d.latitude]);
                 return proj[1];            
-            }).attr("r", 8.5)
+            }).attr("r", 7.5)
             .attr("opacity", 0.7)
             .attr("fill", function(d) { return colorScale(d.season); })
             
@@ -112,7 +116,7 @@ var colorScale = d3.scaleOrdinal(d3.schemeDark2);
                 tooltip.style("visibility","visible")
                     .style("left", cx + "px")
                     .style("top", cy + "px")
-                    .html(d.county + "<br>" + d.observed + "<br>" + d.date.toLocaleDateString("en-US"));
+                    .html(d.observed + "<br>" + d.date.toLocaleDateString("en-US")  + "<br>"+ d.county);
 
                 svg.selectAll("circle")
                     .attr("opacity",0.2);
@@ -147,9 +151,8 @@ var colorScale = d3.scaleOrdinal(d3.schemeDark2);
 
 
     var tooltip = d3.select("#tooltip")
-    .append("div")
-    .attr("class","tooltip");
-    
+        .append("div")
+        .attr("class","tooltip");
 
 
 
