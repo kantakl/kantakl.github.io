@@ -47,7 +47,7 @@ var slider = d3.select("#selectYear");
 
 var selectedYear = slider.property("value");
 
-var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+var colorScale = d3.scaleOrdinal(d3.schemeDark2);
 
 
     var yearLabel = svg.append("text")
@@ -121,7 +121,7 @@ var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
                     .attr("opacity",0.7);
 
             }).on("mouseout", function() {
-                tooltip.style("visibility","visible");
+                tooltip.style("visibility","hidden");
 
                 svg.selectAll("circle")
                     .attr("opacity",0.7);
@@ -146,9 +146,9 @@ var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
 
 
 
-    var tooltip = d3.select("#chart")
-        .append("div")
-        .attr("class","tooltip");
+    var tooltip = d3.select("#tooltip")
+    .append("div")
+    .attr("class","tooltip");
     
 
 
@@ -165,7 +165,7 @@ function parseCSV(data) {
     d.county = data.county;
     d.latitude = +data.latitude;
     d.longitude = +data.longitude;
-    d.season = +data.season; 
+    d.season = data.season; 
     d.date = new Date(data.date);
     d.year = d.date.getFullYear();
 
