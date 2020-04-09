@@ -55,7 +55,7 @@
      .attr("x",-height/2)
      .attr("y",margin.left/2)
      .attr("text-anchor","middle")
-     .text("Number of Sightings");
+     .text("Sightings (1968 - 2018)");
 
 
 
