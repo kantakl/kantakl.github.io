@@ -116,7 +116,8 @@ var colorScale = d3.scaleOrdinal(d3.schemeTableau10);
                 tooltip.style("visibility","visible")
                     .style("left", cx + "px")
                     .style("top", cy + "px")
-                    .html(d.observed + "<br>" + d.date.toLocaleDateString("en-US")  + "<br>"+ d.county);
+                    .html(d.observed + "<br>" + "<br>" + d.county + 
+                    "<br>" + "<br>"+ d.date.toLocaleDateString("en-US"));
 
                 svg.selectAll("circle")
                     .attr("opacity",0.2);
