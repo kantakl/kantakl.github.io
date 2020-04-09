@@ -24,7 +24,7 @@ Promise.all(promises).then(function(data) {
 
     var projection = d3.geoAlbersUsa()
         .translate([width/2, height/2])
-        .scale(1000);
+        .scale(1100);
 
 
     var path = d3.geoPath().projection(projection);
@@ -55,7 +55,7 @@ var colorScale = d3.scaleOrdinal(d3.schemeTableau10);
 
     var yearLabel = svg.append("text")
         .attr("class", "yearLabel")
-        .attr("x", 950)
+        .attr("x", 1000)
         .attr("y", height - 10)
         .attr("opacity", 0.7)
         .text(selectedYear);
@@ -110,8 +110,8 @@ var colorScale = d3.scaleOrdinal(d3.schemeTableau10);
 
         svg.selectAll("circle")
             .on("mouseover", function(d) {
-                var cx = +d3.select(this).attr("cx") + 15;
-                var cy = +d3.select(this).attr("cy") - 25;
+                var cx = +d3.select(this).attr("cx") + 20;
+                var cy = +d3.select(this).attr("cy") + 470;
 
                 tooltip.style("visibility","visible")
                     .style("left", cx + "px")
@@ -125,7 +125,7 @@ var colorScale = d3.scaleOrdinal(d3.schemeTableau10);
                     .attr("opacity",0.7);
 
             }).on("mouseout", function() {
-                tooltip.style("visibility","hidden");
+                tooltip.style("visibility","visible"); 
 
                 svg.selectAll("circle")
                     .attr("opacity",0.7);
@@ -152,7 +152,7 @@ var colorScale = d3.scaleOrdinal(d3.schemeTableau10);
 
     var tooltip = d3.select("#tooltip")
         .append("div")
-        .attr("class","tooltip");
+        .attr("class", "tooltip");
 
 
 
