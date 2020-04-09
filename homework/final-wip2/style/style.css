@@ -82,7 +82,7 @@ html, body {
   color: rgb(230, 230, 230);
   background-color: rgba(108, 129, 113, 0.8);
   padding: 5px;
-  pointer-events: none;
+  /*pointer-events: none;*/
 }
 
 .section {
@@ -98,7 +98,7 @@ html, body {
   fill: rgb(38, 82, 24);
   background-color: rgba(108, 129, 113, 0.8);
   flex: 2;
-  height: 350px;
+  height: 450px;
   margin: 20px;
 }
 
