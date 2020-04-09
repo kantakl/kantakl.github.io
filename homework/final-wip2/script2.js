@@ -8,9 +8,9 @@
        .attr("height", height);
 
        var margin = {
-        top: 10,
-        right: 0,
-        bottom: 60,
+        top: 50,
+        right: 50,
+        bottom: 90,
         left: 90
       };
 
