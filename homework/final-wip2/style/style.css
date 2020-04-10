@@ -81,7 +81,7 @@ html, body {
   overflow-y: scroll;
   color: rgb(230, 230, 230);
   background-color: rgba(108, 129, 113, 0.8);
-  padding: 5px;
+  padding: 15px;
   /*pointer-events: none;*/
 }
 
