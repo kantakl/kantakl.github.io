@@ -1,4 +1,4 @@
-d3.csv("./data/gapminder.csv").then(function(data) {
+d3.csv("./data/rpdr_data.csv").then(function(data) {
     console.log(data);
 
     var width = document.querySelector("#chart").clientWidth;
@@ -9,39 +9,41 @@ d3.csv("./data/gapminder.csv").then(function(data) {
         .append("svg")
         .attr("width", width)
         .attr("height", height);
-   
-    var filtered_data = data.filter(function(d) {
-        return d.year == 2007;
-    });
 
-    console.log(filtered_data);
 
-    var lifeExp = {
-        min: d3.min(filtered_data, function(d) { return +d.lifeExp; }),
-        max: d3.max(filtered_data, function(d) { return +d.lifeExp; })
+
+    
+    var age = {
+        min: d3.min(data, function(d) { return +d.age; }),
+        max: d3.max(data, function(d) { return +d.age; })
     };
 
-    var gdpPercap = {
-        min: d3.min(filtered_data, function(d) { return +d.gdpPercap; }),
-        max: d3.max(filtered_data, function(d) { return +d.gdpPercap; })
+    var final_place = {
+        min: d3.min(data, function(d) { return +d.final_place; }),
+        max: d3.max(data, function(d) { return +d.final_place; })
     };
 
-    var pop = {
-        min: d3.min(filtered_data, function(d) { return +d.pop; }),
-        max: d3.max(filtered_data, function(d) { return +d.pop; })
+    var ls_battles = {
+        min: d3.min(data, function(d) { return +d.ls_battles; }),
+        max: d3.max(data, function(d) { return +d.ls_battles; })
+    };
+
+    var challenge_wins = {
+        min: d3.min(data, function(d) { return +d.challenge_wins; }),
+        max: d3.max(data, function(d) { return +d.challenge_wins; })
     };
 
     var xScale = d3.scaleLinear()
-        .domain([lifeExp.min, lifeExp.max])
+        .domain([18, age.max])
         .range([margin.left, width-margin.right]);
 
     var yScale = d3.scaleLinear()
-        .domain([gdpPercap.min, gdpPercap.max])
+        .domain([0, 8])
         .range([height-margin.bottom, margin.top]);
 
     var rScale = d3.scaleSqrt()
-        .domain([pop.min, pop.max])
-        .range([3, 25]);
+        .domain([ls_battles.min, ls_battles.max])
+        .range([3, 15]);
 
     var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
 
@@ -54,25 +56,25 @@ d3.csv("./data/gapminder.csv").then(function(data) {
         .call(d3.axisLeft().scale(yScale));
     
     var points = svg.selectAll("circle")
-        .data(filtered_data)
+        .data(data)
         .enter()
         .append("circle")
-            .attr("cx", function(d) { return xScale(d.lifeExp); })
-            .attr("cy", function(d) { return yScale(d.gdpPercap); })
-            .attr("r", function(d) { return rScale(d.pop); })
-            .attr("fill", function(d) { return colorScale(d.continent); })
+            .attr("cx", function(d) { return xScale(d.age); })
+            .attr("cy", function(d) { return yScale(d.challenge_wins); })
+            .attr("r", function(d) { return rScale(d.ls_battles); })
+            .attr("fill", function(d) { return colorScale(d.final_place); })
 
     var xAxisLabel = svg.append("text")
         .attr("class", "axisLabel")
         .attr("x", width/2)
         .attr("y", height - margin.bottom/2)
-        .text("Life Expectancy");
+        .text("Age");
 
     var yAxisLabel = svg.append("text")
         .attr("class","axisLabel")
         .attr("transform","rotate(-90)")
         .attr("x", -height/2)
         .attr("y", margin.left/2)
-        .text("GDP Per Capita");
+        .text("Challenge Wins");
 
 });
