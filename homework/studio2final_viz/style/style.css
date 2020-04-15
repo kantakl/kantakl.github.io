@@ -18,3 +18,8 @@ html, body {
   font-weight: bold;
   fill: pink;
 }
+
+button:hover {
+  background-color: rgb(69, 129, 199);
+  color: white;
+}
