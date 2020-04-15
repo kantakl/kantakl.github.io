@@ -90,12 +90,12 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
         .range([height-margin.bottom, margin.top]);
 
 
-    var colorScale = d3.scaleOrdinal(d3.schemePurples[0,4]);
+    var colorScale = d3.scaleOrdinal(d3.schemePurples[0,5]);
 
     
     var rScale = d3.scaleSqrt()
     .domain([challenge_wins.min, challenge_wins.max])
-    .range([5, 30]);
+    .range([5, 35]);
 
 
 
@@ -114,14 +114,14 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
         .attr("class","axisLabel")
         .attr("x", width/2)
         .attr("y", height-margin.bottom/2)
-        .text("Age");
+        .text("Contestant's Age");
 
     var yAxisLabel = svg.append("text")
         .attr("class","axisLabel")
         .attr("transform","rotate(-90)")
         .attr("x",-height/2)
         .attr("y",margin.left/2)
-        .text("Finishing Place");  
+        .text("Finish Place");  
 
   //draw and label axis for circles//
 
@@ -136,17 +136,17 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
             .attr("fill", function(d) { return colorScale(d.ls_battles); })
             .on("mouseover", function(d) {
 
-              var cx = +d3.select(this).attr("cx")+15;
-              var cy = +d3.select(this).attr("cy")-20;
+              var cx = +d3.select(this).attr("cx")+70;
+              var cy = +d3.select(this).attr("cy")+595;
            
               tooltip.style("visibility","visible")
-                .style("left", cx+"px")
-                .style("top", cy+"px")
+                .style("left", cx + "px")
+                .style("top", cy + "px")
                 .html(d.name + "<br>" + d.hometown);
            
               d3.select(this)
-                .attr("stroke","#010101")
-                .attr("stroke-width",3);
+                .attr("stroke","purple")
+                .attr("stroke-width",2);
            
             }).on("mouseout", function() {
            
@@ -159,7 +159,7 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
            
 
     
-     var tooltip = d3.select("#chart")
+     var tooltip = d3.select("#tooltip")
             .append("div")
             .attr("class","tooltip");
                         
@@ -251,7 +251,7 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
               })
             .merge(c)
               .transition()
-              .duration(2000)
+              .duration(1500)
               .attr("cx", function(d) { return xScale(d.age); })
               .attr("cy", function(d) { return yScale(d.final_place); })
               .attr("r", function(d) { return rScale(d.challenge_wins); })
@@ -301,7 +301,7 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
               })
             .merge(c)
               .transition()
-              .duration(2000)
+              .duration(1500)
               .attr("cx", function(d) { return xScale(d.age); })
               .attr("cy", function(d) { return yScale(d.final_place); })
               .attr("r", function(d) { return rScale(d.challenge_wins); })
@@ -351,7 +351,7 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
         })
       .merge(c)
         .transition()
-        .duration(2000)
+        .duration(1500)
         .attr("cx", function(d) { return xScale(d.age); })
         .attr("cy", function(d) { return yScale(d.final_place); })
         .attr("r", function(d) { return rScale(d.challenge_wins); })
@@ -401,7 +401,7 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
         })
       .merge(c)
         .transition()
-        .duration(2000)
+        .duration(1500)
         .attr("cx", function(d) { return xScale(d.age); })
         .attr("cy", function(d) { return yScale(d.final_place); })
         .attr("r", function(d) { return rScale(d.challenge_wins); })
@@ -451,7 +451,7 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
         })
       .merge(c)
         .transition()
-        .duration(2000)
+        .duration(1500)
         .attr("cx", function(d) { return xScale(d.age); })
         .attr("cy", function(d) { return yScale(d.final_place); })
         .attr("r", function(d) { return rScale(d.challenge_wins); })
@@ -501,7 +501,7 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
             })
           .merge(c)
             .transition()
-            .duration(2000)
+            .duration(1500)
             .attr("cx", function(d) { return xScale(d.age); })
             .attr("cy", function(d) { return yScale(d.final_place); })
             .attr("r", function(d) { return rScale(d.challenge_wins); })
@@ -551,7 +551,7 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
             })
           .merge(c)
             .transition()
-            .duration(2000)
+            .duration(1500)
             .attr("cx", function(d) { return xScale(d.age); })
             .attr("cy", function(d) { return yScale(d.final_place); })
             .attr("r", function(d) { return rScale(d.challenge_wins); })
@@ -602,7 +602,7 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
             })
           .merge(c)
             .transition()
-            .duration(2000)
+            .duration(1500)
             .attr("cx", function(d) { return xScale(d.age); })
             .attr("cy", function(d) { return yScale(d.final_place); })
             .attr("r", function(d) { return rScale(d.challenge_wins); })
@@ -652,7 +652,7 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
             })
           .merge(c)
             .transition()
-            .duration(2000)
+            .duration(1500)
             .attr("cx", function(d) { return xScale(d.age); })
             .attr("cy", function(d) { return yScale(d.final_place); })
             .attr("r", function(d) { return rScale(d.challenge_wins); })
@@ -702,7 +702,7 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
             })
           .merge(c)
             .transition()
-            .duration(2000)
+            .duration(1500)
             .attr("cx", function(d) { return xScale(d.age); })
             .attr("cy", function(d) { return yScale(d.final_place); })
             .attr("r", function(d) { return rScale(d.challenge_wins); })
@@ -752,7 +752,7 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
             })
           .merge(c)
             .transition()
-            .duration(2000)
+            .duration(1500)
             .attr("cx", function(d) { return xScale(d.age); })
             .attr("cy", function(d) { return yScale(d.final_place); })
             .attr("r", function(d) { return rScale(d.challenge_wins); })
