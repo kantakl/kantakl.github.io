@@ -38,6 +38,21 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
       return d.season == 7;
     });
 
+    var season_8 = data.filter(function(d) {
+      return d.season == 8;
+    });
+
+    var season_9 = data.filter(function(d) {
+      return d.season == 9;
+    });
+
+    var season_10 = data.filter(function(d) {
+      return d.season == 10;
+    });
+
+    var season_11 = data.filter(function(d) {
+      return d.season == 11;
+    });
 
 
    
@@ -59,10 +74,10 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
       max: d3.max(data, function(d) { return +d.final_place; })
   };
 
-  var ls_battles = {
-    min: d3.min(data, function(d) { return +d.ls_battles; }),
-    max: d3.max(data, function(d) { return +d.ls_battles; })
-};
+    var ls_battles = {
+      min: d3.min(data, function(d) { return +d.ls_battles; }),
+      max: d3.max(data, function(d) { return +d.ls_battles; })
+  };
 
 
     var xScale = d3.scaleLinear()
@@ -75,7 +90,12 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
         .range([height-margin.bottom, margin.top]);
 
 
-    var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+    var colorScale = d3.scaleOrdinal(d3.schemePurples[0,4]);
+
+    
+    var rScale = d3.scaleSqrt()
+    .domain([challenge_wins.min, challenge_wins.max])
+    .range([5, 30]);
 
 
 
@@ -112,8 +132,8 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
         .append("circle")
             .attr("cx", function(d) { return xScale(d.age); })
             .attr("cy", function(d) { return yScale(d.final_place); })
-            .attr("r", 10)
-            .attr("fill", function(d) { return colorScale(d.challenge_wins); })
+            .attr("r", function(d) { return rScale(d.challenge_wins); })
+            .attr("fill", function(d) { return colorScale(d.ls_battles); })
             .on("mouseover", function(d) {
 
               var cx = +d3.select(this).attr("cx")+15;
@@ -122,7 +142,7 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
               tooltip.style("visibility","visible")
                 .style("left", cx+"px")
                 .style("top", cy+"px")
-                .text(d.name);
+                .html(d.name + "<br>" + d.hometown);
            
               d3.select(this)
                 .attr("stroke","#010101")
@@ -152,8 +172,8 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
             .append("circle")
               .attr("cx", function(d) { return xScale(d.age); })
               .attr("cy", function(d) { return yScale(d.final_place); })
-              .attr("r", 10)
-              .attr("fill", function(d) { return colorScale(d.challenge_wins); })
+              .attr("r", function(d) { return rScale(d.challenge_wins); })
+              .attr("fill", function(d) { return colorScale(d.ls_battles); })
               .on("mouseover", function(d) {
 
                 var cx = +d3.select(this).attr("cx")+15;
@@ -181,8 +201,8 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
               .duration(1500)
               .attr("cx", function(d) { return xScale(d.age); })
               .attr("cy", function(d) { return yScale(d.final_place); })
-              .attr("r", 10)
-              .attr("fill", function(d) { return colorScale(d.challenge_wins); })
+              .attr("r", function(d) { return rScale(d.challenge_wins); })
+              .attr("fill", function(d) { return colorScale(d.ls_battles); })
       
             c.exit()
               .transition()
@@ -205,8 +225,8 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
             .append("circle")
               .attr("cx", function(d) { return xScale(d.age); })
               .attr("cy", function(d) { return yScale(d.final_place); })
-              .attr("r", 10)
-              .attr("fill", function(d) { return colorScale(d.challenge_wins); })
+              .attr("r", function(d) { return rScale(d.challenge_wins); })
+              .attr("fill", function(d) { return colorScale(d.ls_battles); })
               .on("mouseover", function(d) {
 
                 var cx = +d3.select(this).attr("cx")+15;
@@ -234,8 +254,8 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
               .duration(2000)
               .attr("cx", function(d) { return xScale(d.age); })
               .attr("cy", function(d) { return yScale(d.final_place); })
-              .attr("r", 10)
-              .attr("fill", function(d) { return colorScale(d.challenge_wins); })
+              .attr("r", function(d) { return rScale(d.challenge_wins); })
+              .attr("fill", function(d) { return colorScale(d.ls_battles); })
       
             c.exit()
               .transition()
@@ -255,8 +275,8 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
             .append("circle")
               .attr("cx", function(d) { return xScale(d.age); })
               .attr("cy", function(d) { return yScale(d.final_place); })
-              .attr("r", 10)
-              .attr("fill", function(d) { return colorScale(d.challenge_wins); })
+              .attr("r", function(d) { return rScale(d.challenge_wins); })
+              .attr("fill", function(d) { return colorScale(d.ls_battles); })
               .on("mouseover", function(d) {
 
                 var cx = +d3.select(this).attr("cx")+15;
@@ -284,8 +304,8 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
               .duration(2000)
               .attr("cx", function(d) { return xScale(d.age); })
               .attr("cy", function(d) { return yScale(d.final_place); })
-              .attr("r", 10)
-              .attr("fill", function(d) { return colorScale(d.challenge_wins); })
+              .attr("r", function(d) { return rScale(d.challenge_wins); })
+              .attr("fill", function(d) { return colorScale(d.ls_battles); })
       
             c.exit()
               .transition()
@@ -305,8 +325,8 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
       .append("circle")
         .attr("cx", function(d) { return xScale(d.age); })
         .attr("cy", function(d) { return yScale(d.final_place); })
-        .attr("r", 10)
-        .attr("fill", function(d) { return colorScale(d.challenge_wins); })
+        .attr("r", function(d) { return rScale(d.challenge_wins); })
+        .attr("fill", function(d) { return colorScale(d.ls_battles); })
         .on("mouseover", function(d) {
 
           var cx = +d3.select(this).attr("cx")+15;
@@ -334,8 +354,8 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
         .duration(2000)
         .attr("cx", function(d) { return xScale(d.age); })
         .attr("cy", function(d) { return yScale(d.final_place); })
-        .attr("r", 10)
-        .attr("fill", function(d) { return colorScale(d.challenge_wins); })
+        .attr("r", function(d) { return rScale(d.challenge_wins); })
+        .attr("fill", function(d) { return colorScale(d.ls_battles); })
 
       c.exit()
         .transition()
@@ -355,8 +375,8 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
       .append("circle")
         .attr("cx", function(d) { return xScale(d.age); })
         .attr("cy", function(d) { return yScale(d.final_place); })
-        .attr("r", 10)
-        .attr("fill", function(d) { return colorScale(d.challenge_wins); })
+        .attr("r", function(d) { return rScale(d.challenge_wins); })
+        .attr("fill", function(d) { return colorScale(d.ls_battles); })
         .on("mouseover", function(d) {
 
           var cx = +d3.select(this).attr("cx")+15;
@@ -384,8 +404,8 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
         .duration(2000)
         .attr("cx", function(d) { return xScale(d.age); })
         .attr("cy", function(d) { return yScale(d.final_place); })
-        .attr("r", 10)
-        .attr("fill", function(d) { return colorScale(d.challenge_wins); })
+        .attr("r", function(d) { return rScale(d.challenge_wins); })
+        .attr("fill", function(d) { return colorScale(d.ls_battles); })
 
       c.exit()
         .transition()
@@ -405,8 +425,8 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
       .append("circle")
         .attr("cx", function(d) { return xScale(d.age); })
         .attr("cy", function(d) { return yScale(d.final_place); })
-        .attr("r", 10)
-        .attr("fill", function(d) { return colorScale(d.challenge_wins); })
+        .attr("r", function(d) { return rScale(d.challenge_wins); })
+        .attr("fill", function(d) { return colorScale(d.ls_battles); })
         .on("mouseover", function(d) {
 
           var cx = +d3.select(this).attr("cx")+15;
@@ -434,8 +454,8 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
         .duration(2000)
         .attr("cx", function(d) { return xScale(d.age); })
         .attr("cy", function(d) { return yScale(d.final_place); })
-        .attr("r", 10)
-        .attr("fill", function(d) { return colorScale(d.challenge_wins); })
+        .attr("r", function(d) { return rScale(d.challenge_wins); })
+        .attr("fill", function(d) { return colorScale(d.ls_battles); })
 
       c.exit()
         .transition()
@@ -455,8 +475,8 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
           .append("circle")
             .attr("cx", function(d) { return xScale(d.age); })
             .attr("cy", function(d) { return yScale(d.final_place); })
-            .attr("r", 10)
-            .attr("fill", function(d) { return colorScale(d.challenge_wins); })
+            .attr("r", function(d) { return rScale(d.challenge_wins); })
+            .attr("fill", function(d) { return colorScale(d.ls_battles); })
             .on("mouseover", function(d) {
     
               var cx = +d3.select(this).attr("cx")+15;
@@ -484,8 +504,259 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
             .duration(2000)
             .attr("cx", function(d) { return xScale(d.age); })
             .attr("cy", function(d) { return yScale(d.final_place); })
-            .attr("r", 10)
-            .attr("fill", function(d) { return colorScale(d.challenge_wins); })
+            .attr("r", function(d) { return rScale(d.challenge_wins); })
+            .attr("fill", function(d) { return colorScale(d.ls_battles); })
+    
+          c.exit()
+            .transition()
+            .duration(500)
+            .attr("r",0)
+            .remove();
+        })
+
+                //szn 7//
+
+        d3.select("#season_7").on("click", function() {
+           
+          var c = svg.selectAll("circle")
+            .data(season_7, function(d) { return d.final_place; });
+    
+          c.enter()
+          .append("circle")
+            .attr("cx", function(d) { return xScale(d.age); })
+            .attr("cy", function(d) { return yScale(d.final_place); })
+            .attr("r", function(d) { return rScale(d.challenge_wins); })
+            .attr("fill", function(d) { return colorScale(d.ls_battles); })
+            .on("mouseover", function(d) {
+    
+              var cx = +d3.select(this).attr("cx")+15;
+              var cy = +d3.select(this).attr("cy")-20;
+           
+              tooltip.style("visibility","visible")
+                .style("left", cx+"px")
+                .style("top", cy+"px")
+                .text(d.name);
+           
+              d3.select(this)
+                .attr("stroke","#010101")
+                .attr("stroke-width",3);
+           
+            }).on("mouseout", function() {
+           
+              tooltip.style("visibility","hidden");
+           
+              d3.select(this)
+                .attr("stroke","none")
+                .attr("stroke-width",0);
+            })
+          .merge(c)
+            .transition()
+            .duration(2000)
+            .attr("cx", function(d) { return xScale(d.age); })
+            .attr("cy", function(d) { return yScale(d.final_place); })
+            .attr("r", function(d) { return rScale(d.challenge_wins); })
+            .attr("fill", function(d) { return colorScale(d.ls_battles); })
+    
+          c.exit()
+            .transition()
+            .duration(500)
+            .attr("r",0)
+            .remove();
+        })
+
+
+        //szn 8//
+
+        d3.select("#season_8").on("click", function() {
+           
+          var c = svg.selectAll("circle")
+            .data(season_8, function(d) { return d.final_place; });
+    
+          c.enter()
+          .append("circle")
+            .attr("cx", function(d) { return xScale(d.age); })
+            .attr("cy", function(d) { return yScale(d.final_place); })
+            .attr("r", function(d) { return rScale(d.challenge_wins); })
+            .attr("fill", function(d) { return colorScale(d.ls_battles); })
+            .on("mouseover", function(d) {
+    
+              var cx = +d3.select(this).attr("cx")+15;
+              var cy = +d3.select(this).attr("cy")-20;
+           
+              tooltip.style("visibility","visible")
+                .style("left", cx+"px")
+                .style("top", cy+"px")
+                .text(d.name);
+           
+              d3.select(this)
+                .attr("stroke","#010101")
+                .attr("stroke-width",3);
+           
+            }).on("mouseout", function() {
+           
+              tooltip.style("visibility","hidden");
+           
+              d3.select(this)
+                .attr("stroke","none")
+                .attr("stroke-width",0);
+            })
+          .merge(c)
+            .transition()
+            .duration(2000)
+            .attr("cx", function(d) { return xScale(d.age); })
+            .attr("cy", function(d) { return yScale(d.final_place); })
+            .attr("r", function(d) { return rScale(d.challenge_wins); })
+            .attr("fill", function(d) { return colorScale(d.ls_battles); })
+    
+          c.exit()
+            .transition()
+            .duration(500)
+            .attr("r",0)
+            .remove();
+        })
+
+        //szn 9//
+
+        d3.select("#season_9").on("click", function() {
+           
+          var c = svg.selectAll("circle")
+            .data(season_9, function(d) { return d.final_place; });
+    
+          c.enter()
+          .append("circle")
+            .attr("cx", function(d) { return xScale(d.age); })
+            .attr("cy", function(d) { return yScale(d.final_place); })
+            .attr("r", function(d) { return rScale(d.challenge_wins); })
+            .attr("fill", function(d) { return colorScale(d.ls_battles); })
+            .on("mouseover", function(d) {
+    
+              var cx = +d3.select(this).attr("cx")+15;
+              var cy = +d3.select(this).attr("cy")-20;
+           
+              tooltip.style("visibility","visible")
+                .style("left", cx+"px")
+                .style("top", cy+"px")
+                .text(d.name);
+           
+              d3.select(this)
+                .attr("stroke","#010101")
+                .attr("stroke-width",3);
+           
+            }).on("mouseout", function() {
+           
+              tooltip.style("visibility","hidden");
+           
+              d3.select(this)
+                .attr("stroke","none")
+                .attr("stroke-width",0);
+            })
+          .merge(c)
+            .transition()
+            .duration(2000)
+            .attr("cx", function(d) { return xScale(d.age); })
+            .attr("cy", function(d) { return yScale(d.final_place); })
+            .attr("r", function(d) { return rScale(d.challenge_wins); })
+            .attr("fill", function(d) { return colorScale(d.ls_battles); })
+    
+          c.exit()
+            .transition()
+            .duration(500)
+            .attr("r",0)
+            .remove();
+        })
+
+        //szn 10//
+
+        d3.select("#season_10").on("click", function() {
+           
+          var c = svg.selectAll("circle")
+            .data(season_10, function(d) { return d.final_place; });
+    
+          c.enter()
+          .append("circle")
+            .attr("cx", function(d) { return xScale(d.age); })
+            .attr("cy", function(d) { return yScale(d.final_place); })
+            .attr("r", function(d) { return rScale(d.challenge_wins); })
+            .attr("fill", function(d) { return colorScale(d.ls_battles); })
+            .on("mouseover", function(d) {
+    
+              var cx = +d3.select(this).attr("cx")+15;
+              var cy = +d3.select(this).attr("cy")-20;
+           
+              tooltip.style("visibility","visible")
+                .style("left", cx+"px")
+                .style("top", cy+"px")
+                .text(d.name);
+           
+              d3.select(this)
+                .attr("stroke","#010101")
+                .attr("stroke-width",3);
+           
+            }).on("mouseout", function() {
+           
+              tooltip.style("visibility","hidden");
+           
+              d3.select(this)
+                .attr("stroke","none")
+                .attr("stroke-width",0);
+            })
+          .merge(c)
+            .transition()
+            .duration(2000)
+            .attr("cx", function(d) { return xScale(d.age); })
+            .attr("cy", function(d) { return yScale(d.final_place); })
+            .attr("r", function(d) { return rScale(d.challenge_wins); })
+            .attr("fill", function(d) { return colorScale(d.ls_battles); })
+    
+          c.exit()
+            .transition()
+            .duration(500)
+            .attr("r",0)
+            .remove();
+        })
+
+        //szn 11//
+
+        d3.select("#season_11").on("click", function() {
+           
+          var c = svg.selectAll("circle")
+            .data(season_11, function(d) { return d.final_place; });
+    
+          c.enter()
+          .append("circle")
+            .attr("cx", function(d) { return xScale(d.age); })
+            .attr("cy", function(d) { return yScale(d.final_place); })
+            .attr("r", function(d) { return rScale(d.challenge_wins); })
+            .attr("fill", function(d) { return colorScale(d.ls_battles); })
+            .on("mouseover", function(d) {
+    
+              var cx = +d3.select(this).attr("cx")+15;
+              var cy = +d3.select(this).attr("cy")-20;
+           
+              tooltip.style("visibility","visible")
+                .style("left", cx+"px")
+                .style("top", cy+"px")
+                .text(d.name);
+           
+              d3.select(this)
+                .attr("stroke","#010101")
+                .attr("stroke-width",3);
+           
+            }).on("mouseout", function() {
+           
+              tooltip.style("visibility","hidden");
+           
+              d3.select(this)
+                .attr("stroke","none")
+                .attr("stroke-width",0);
+            })
+          .merge(c)
+            .transition()
+            .duration(2000)
+            .attr("cx", function(d) { return xScale(d.age); })
+            .attr("cy", function(d) { return yScale(d.final_place); })
+            .attr("r", function(d) { return rScale(d.challenge_wins); })
+            .attr("fill", function(d) { return colorScale(d.ls_battles); })
     
           c.exit()
             .transition()
