@@ -53,7 +53,7 @@ button  {
   text-decoration: none;
   display: inline-block;
   font-size: 9pt;
-  border-radius: 2px;
+  border-radius: 32px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
 
@@ -108,7 +108,7 @@ button  {
 
 #text-bottom p{
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14pt;
+  font-size: 10pt;
   padding-top: 0px;
   padding-right: 20px;
 }
@@ -190,7 +190,7 @@ button  {
 .section p {
   flex: 1;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14pt;
+  font-size: 10pt;
 }
 
 .section div {
