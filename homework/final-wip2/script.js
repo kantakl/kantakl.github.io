@@ -24,7 +24,7 @@ Promise.all(promises).then(function(data) {
 
     var projection = d3.geoAlbersUsa()
         .translate([width/2, height/2])
-        .scale(1050);
+        .scale(1020);
 
 
     var path = d3.geoPath().projection(projection);
@@ -125,8 +125,8 @@ var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
 
                 d3.select(this)
                     .attr("opacity",0.7)
-                    .attr("stroke","#020202")
-                    .attr("stroke-width",2);;
+                    .attr("stroke","#ffffff")
+                    .attr("stroke-width",2)
 
 
             }).on("mouseout", function() {
@@ -156,13 +156,9 @@ var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
 
     })
     
-
-
-
     var tooltip = d3.select("#tooltip")
         .append("div")
         .attr("class", "tooltip");
-
 
 
 
