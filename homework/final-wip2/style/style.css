@@ -20,7 +20,7 @@ html, body {
   text-shadow: 0 10px 11px black;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1.5em;
-  color: rgb(255, 255, 255);
+  color: rgb(250, 250, 250);
 }
 
 
@@ -65,7 +65,7 @@ html, body {
 }
 
 #slider {
-  padding: 50px;
+  padding: 30px;
   width:100%;
 }
 
@@ -84,10 +84,11 @@ html, body {
 #tooltip  {
   display: flex;
   width: 25%;
-  height: 50%;
+  height: 70%;
   background-color: rgba(108, 129, 113, 0.8);
   border-radius: 16px;
   margin-top: 10px;
+  margin-right: 10px;
 }
 
 .tooltip {
@@ -97,8 +98,8 @@ html, body {
   visibility: hidden;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
-  font-size: 11pt;
-  height:300px;
+  font-size: 10pt;
+  height:400px;
   overflow-y: scroll;
   color: rgb(230, 230, 230);
   padding: 15px;

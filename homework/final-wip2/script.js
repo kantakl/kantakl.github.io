@@ -50,7 +50,8 @@ var slider = d3.select("#selectYear");
 
 var selectedYear = slider.property("value");
 
-var colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+    
 
 
     var yearLabel = svg.append("text")
@@ -116,7 +117,7 @@ var colorScale = d3.scaleOrdinal(d3.schemeTableau10);
                 tooltip.style("visibility","visible")
                     .style("left", cx + "px")
                     .style("top", cy + "px")
-                    .html(d.county + "<br>" + "<br>" + d.observed + 
+                    .html(d.county + ", "+ d.state + "<br>" + "<br>" + d.observed + 
                     "<br>" + "<br>"+ d.date.toLocaleDateString("en-US"));
 
                 svg.selectAll("circle")
