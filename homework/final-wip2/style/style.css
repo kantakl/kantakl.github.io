@@ -35,7 +35,7 @@ html, body {
 
 #banner p{
   text-shadow: 0 10px 11px black;
-  font-family: "Georgia", 'Times New Roman', serif, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1em;
   padding-top: 50px;
 }
@@ -107,7 +107,7 @@ button  {
 }
 
 #text-bottom p{
-  font-family: "Georgia", 'Times New Roman', serif, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14pt;
   padding-top: 0px;
   padding-right: 20px;
@@ -189,7 +189,7 @@ button  {
 
 .section p {
   flex: 1;
-  font-family: "Georgia", 'Times New Roman', serif, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14pt;
 }
 
