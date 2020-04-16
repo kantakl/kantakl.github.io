@@ -141,6 +141,7 @@ var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
             })
         
     }
+    
 
 
     updateMap(selectedYear);
@@ -160,6 +161,9 @@ var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
         .append("div")
         .attr("class", "tooltip");
 
+        var tooltip2 = d3.select("#chart")
+        .append("div")
+        .attr("class", "tooltip");
 
 
 });

@@ -35,14 +35,81 @@ html, body {
 
 #banner p{
   text-shadow: 0 10px 11px black;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Georgia", 'Times New Roman', serif, Arial, sans-serif;
   font-size: 1em;
   padding-top: 50px;
 }
 
+nav {
+  margin-top: 10px;
+}
+
+button  {
+  color:rgb(230, 230, 230);
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 9pt;
+  border-radius: 2px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  button#winter  {
+    background-color: #1f77b4;
+  }
+
+  button#spring  {
+    background-color: #d62728;
+  }
+
+  button#summer  {
+    background-color: #2ca02c;
+  }
+
+  button#fall  {
+    background-color: #ff7f0e;
+  }
+
 #middle-content {
   display:flex;
   height:50%;
+}
+
+#bottom-content {
+  display:flex;
+  height:50%;
+}
+
+.bottom-content {
+  display:flex;
+  height:50%;
+}
+
+#picture1 {
+  width: 65%;
+  height: 90vh;
+  display: flex;
+  padding-left: 20px;
+  background-image: url('https://www.outsideonline.com/sites/default/files/styles/full-page/public/2016/07/08/bigfoot-roger-patterson-1_h.jpg?itok=0or8lHqq');
+  margin-left: 20px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+#text-bottom {
+  display: flex;
+  width: 35%;
+  padding-left: 20px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#text-bottom p{
+  font-family: "Georgia", 'Times New Roman', serif, Arial, sans-serif;
+  font-size: 14pt;
+  padding-top: 0px;
+  padding-right: 20px;
 }
 
 #container {
@@ -106,7 +173,7 @@ html, body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   font-size: 10pt;
-  height:400px;
+  height:550px;
   overflow-y: scroll;
   color: rgb(230, 230, 230);
   padding: 15px;
@@ -121,6 +188,8 @@ html, body {
 
 .section p {
   flex: 1;
+  font-family: "Georgia", 'Times New Roman', serif, Arial, sans-serif;
+  font-size: 14pt;
 }
 
 .section div {
