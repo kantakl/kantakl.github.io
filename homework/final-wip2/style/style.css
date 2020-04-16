@@ -17,6 +17,7 @@ html, body {
   background-size: cover;
   padding: 15vh 20px;
   text-align: center;
+  text-shadow: 0 10px 11px black;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1.5em;
   color: rgb(255, 255, 255);
@@ -83,6 +84,7 @@ html, body {
 #tooltip  {
   display: flex;
   width: 25%;
+  height: 50%;
   background-color: rgba(108, 129, 113, 0.8);
   border-radius: 16px;
   margin-top: 10px;
@@ -103,6 +105,8 @@ html, body {
   /*pointer-events: none;*/
 }
 
+
+
 .section {
   display: flex;
   padding: 50px;
@@ -117,6 +121,7 @@ html, body {
   background-color: rgba(108, 129, 113, 0.8);
   flex: 2;
   height: 450px;
+  border-radius: 4px;
   margin: 20px;
 }
 
@@ -138,4 +143,9 @@ footer {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1.5em;
   color: rgb(255, 255, 255);
+}
+
+footer p  {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11pt;
 }

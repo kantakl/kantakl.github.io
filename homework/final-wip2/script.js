@@ -56,7 +56,7 @@ var colorScale = d3.scaleOrdinal(d3.schemeTableau10);
     var yearLabel = svg.append("text")
         .attr("class", "yearLabel")
         .attr("x", 710)
-        .attr("y", height - 10)
+        .attr("y", height - 1)
         .attr("opacity", 0.7)
         .text(selectedYear);
     
@@ -116,7 +116,7 @@ var colorScale = d3.scaleOrdinal(d3.schemeTableau10);
                 tooltip.style("visibility","visible")
                     .style("left", cx + "px")
                     .style("top", cy + "px")
-                    .html(d.observed + "<br>" + "<br>" + d.county + 
+                    .html(d.county + "<br>" + "<br>" + d.observed + 
                     "<br>" + "<br>"+ d.date.toLocaleDateString("en-US"));
 
                 svg.selectAll("circle")
