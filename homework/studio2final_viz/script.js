@@ -136,8 +136,8 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
             .attr("fill", function(d) { return colorScale(d.ls_battles); })
             .on("mouseover", function(d) {
 
-              var cx = +d3.select(this).attr("cx")+70;
-              var cy = +d3.select(this).attr("cy")+595;
+              var cx = +d3.select(this).attr("cx");
+              var cy = +d3.select(this).attr("cy");
            
               tooltip.style("visibility","visible")
                 .style("left", cx + "px")

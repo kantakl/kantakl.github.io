@@ -24,7 +24,7 @@ Promise.all(promises).then(function(data) {
 
     var projection = d3.geoAlbersUsa()
         .translate([width/2, height/2])
-        .scale(1100);
+        .scale(1050);
 
 
     var path = d3.geoPath().projection(projection);
@@ -55,7 +55,7 @@ var colorScale = d3.scaleOrdinal(d3.schemeTableau10);
 
     var yearLabel = svg.append("text")
         .attr("class", "yearLabel")
-        .attr("x", 1000)
+        .attr("x", 710)
         .attr("y", height - 10)
         .attr("opacity", 0.7)
         .text(selectedYear);
@@ -96,7 +96,7 @@ var colorScale = d3.scaleOrdinal(d3.schemeTableau10);
             }).attr("cy", function(d) {
                 var proj = projection([d.longitude, d.latitude]);
                 return proj[1];            
-            }).attr("r", 7.5)
+            }).attr("r", 7.0)
             .attr("opacity", 0.7)
             .attr("fill", function(d) { return colorScale(d.season); })
             

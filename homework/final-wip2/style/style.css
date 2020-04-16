@@ -1,4 +1,6 @@
 * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -13,12 +15,14 @@ html, body {
   background-image: url('https://www.sciencemag.org/sites/default/files/styles/article_main_large/public/images/sn-bigfootH.jpg?itok=Lt3JPra5');
   background-position: center;
   background-size: cover;
-  padding: 17vh 20px;
+  padding: 15vh 20px;
   text-align: center;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1.5em;
   color: rgb(255, 255, 255);
 }
+
+
 
 #description  {
   text-align:center;
@@ -26,6 +30,11 @@ html, body {
 
 .description h5 {
   flex: 1;
+}
+
+#middle-content {
+  display:flex;
+  height:50%;
 }
 
 #container {
@@ -36,12 +45,16 @@ html, body {
   padding: 0px;
 }
 
+.middle-content {
+  display:flex;
+  height:50%;
+}
+
 #chart {
-  width: 100%;
-  height: 80vh;
-  position: relative;
+  width: 75%;
+  height: 90vh;
   display: flex;
-  flex-direction: column;
+  padding-left: 20px;
 }
 
 .state {
@@ -56,31 +69,36 @@ html, body {
 }
 
 #selectYear {
-  width: 100%;
-  position: center;
+  width: 75%;
 }
 
 .yearLabel {
   font-family: "Helvetica Neue", Helvetica, Arial, Helvetica, sans-serif;
-  font-size: 6em;
+  font-size: 5em;
   font-weight: 700;
   fill: rgb(144, 157, 51);
   cursor: default;
 }
 
+#tooltip  {
+  display: flex;
+  width: 25%;
+  background-color: rgba(108, 129, 113, 0.8);
+  border-radius: 16px;
+  margin-top: 10px;
+}
+
 .tooltip {
-  position: absolute;
+  margin: 0px;
   left: 2px;
   top: 1px;
   visibility: hidden;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   font-size: 11pt;
-  width:350px;
-  height:350px;
+  height:300px;
   overflow-y: scroll;
   color: rgb(230, 230, 230);
-  background-color: rgba(108, 129, 113, 0.8);
   padding: 15px;
   /*pointer-events: none;*/
 }
