@@ -124,15 +124,22 @@ var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
                     .attr("opacity",0.2);
 
                 d3.select(this)
-                    .attr("opacity",0.7);
+                    .attr("opacity",0.7)
+                    .attr("stroke","#020202")
+                    .attr("stroke-width",2);;
+
 
             }).on("mouseout", function() {
                 tooltip.style("visibility","visible"); 
 
+                d3.select(this)
+                .attr("stroke","none")
+                .attr("stroke-width",0);
+
                 svg.selectAll("circle")
                     .attr("opacity",0.7);
             })
-
+        
     }
 
 
