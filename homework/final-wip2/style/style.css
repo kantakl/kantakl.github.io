@@ -42,12 +42,13 @@ html, body {
 
 nav {
   margin-top: 10px;
+  margin-right: 10px;
 }
 
 button  {
   color:rgb(230, 230, 230);
   border: none;
-  padding: 15px 32px;
+  padding: 10px 19px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
