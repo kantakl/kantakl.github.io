@@ -3,6 +3,7 @@
 }
 
 html, body {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   margin: 0px;
   padding: 0px;
 }
@@ -14,6 +15,7 @@ html, body {
   background-size: cover;
   color: rgb(255, 227, 137);
   padding: 20vh 20px;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   text-align: center;
   text-shadow: 0 12px 10px black;
 }
@@ -21,10 +23,12 @@ html, body {
 h4 {
   display: flex;
   padding: 20px;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 nav {
   padding-top: 20px;;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 #chart {
