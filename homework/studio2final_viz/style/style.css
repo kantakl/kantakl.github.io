@@ -66,27 +66,31 @@ button:active {
   color:rgb(230, 134, 150);
 }
 
-.section {
+.section1 {
   display: flex;
   padding: 20px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.section p {
+.section1 p {
   flex: 1;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 10pt;
 }
 
-.section svg {
+.section1 svg {
   flex: 2;
   height: 500px;
   margin: 20px;
   background-color: rgb(243, 105, 232, 0.65);
+  border-radius: 4px;
 }
 
 @media (max-width: 700px) {
-  .section {
+  .section1 {
     flex-direction: column;
   }
-  .section svg {
+  .section1 svg {
     flex: none;
   }
 }
@@ -95,7 +99,7 @@ button:active {
 
 .tooltip {
   position: absolute;
-  left: 13px;
+  left: 1px;
   top: 10px;
   visibility: hidden;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -108,4 +112,52 @@ button:active {
   border-radius: 4px;
   padding: 5px;
   /*pointer-events: none;*/
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  margin: 0px;
+  padding: 0px;
+}
+
+.section2 {
+  display: flex;
+  padding: 20px;
+}
+
+.section2 p {
+  flex: 1;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 10pt;
+}
+
+.section2 div {
+  fill: purple;
+  background-color: rgb(243, 105, 232, 0.65);
+  flex: 2;
+  height: 450px;
+  border-radius: 4px;
+  margin: 20px;
+}
+
+@media (max-width: 400px) {
+  .section2 {
+    flex-direction: column-reverse;
+  }
+  .section2 svg {
+    flex: none;
+  }
+}
+
+footer {
+  background-color: rgb(0, 0, 0);
+  background-position: center;
+  background-size: cover;
+  padding: 17vh 20px;
+  text-align: center;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.5em;
+  color: rgb(255, 227, 101);
 }

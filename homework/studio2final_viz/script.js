@@ -136,8 +136,8 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
             .attr("fill", function(d) { return colorScale(d.ls_battles); })
             .on("mouseover", function(d) {
 
-              var cx = +d3.select(this).attr("cx");
-              var cy = +d3.select(this).attr("cy");
+              var cx = +d3.select(this).attr("cx") + 50;
+              var cy = +d3.select(this).attr("cy") + 570;
            
               tooltip.style("visibility","visible")
                 .style("left", cx + "px")
@@ -175,14 +175,14 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
               .attr("r", function(d) { return rScale(d.challenge_wins); })
               .attr("fill", function(d) { return colorScale(d.ls_battles); })
               .on("mouseover", function(d) {
-
-                var cx = +d3.select(this).attr("cx")+15;
-                var cy = +d3.select(this).attr("cy")-20;
              
+                var cx = +d3.select(this).attr("cx") + 50;
+                var cy = +d3.select(this).attr("cy") + 570;
+
                 tooltip.style("visibility","visible")
                   .style("left", cx+"px")
                   .style("top", cy+"px")
-                  .text(d.name);
+                  .html(d.name + "<br>" + d.hometown);
              
                 d3.select(this)
                   .attr("stroke","#010101")
@@ -229,13 +229,13 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
               .attr("fill", function(d) { return colorScale(d.ls_battles); })
               .on("mouseover", function(d) {
 
-                var cx = +d3.select(this).attr("cx")+15;
-                var cy = +d3.select(this).attr("cy")-20;
+                var cx = +d3.select(this).attr("cx") + 50;
+                var cy = +d3.select(this).attr("cy") + 570;
              
                 tooltip.style("visibility","visible")
                   .style("left", cx+"px")
                   .style("top", cy+"px")
-                  .text(d.name);
+                  .html(d.name + "<br>" + d.hometown);
              
                 d3.select(this)
                   .attr("stroke","#010101")
@@ -279,13 +279,13 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
               .attr("fill", function(d) { return colorScale(d.ls_battles); })
               .on("mouseover", function(d) {
 
-                var cx = +d3.select(this).attr("cx")+15;
-                var cy = +d3.select(this).attr("cy")-20;
+                var cx = +d3.select(this).attr("cx") + 50;
+                var cy = +d3.select(this).attr("cy") + 570;
              
                 tooltip.style("visibility","visible")
                   .style("left", cx+"px")
                   .style("top", cy+"px")
-                  .text(d.name);
+                  .html(d.name + "<br>" + d.hometown);
              
                 d3.select(this)
                   .attr("stroke","#010101")
@@ -329,13 +329,14 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
         .attr("fill", function(d) { return colorScale(d.ls_battles); })
         .on("mouseover", function(d) {
 
-          var cx = +d3.select(this).attr("cx")+15;
-          var cy = +d3.select(this).attr("cy")-20;
+          var cx = +d3.select(this).attr("cx") + 50;
+          var cy = +d3.select(this).attr("cy") + 570;
+
        
           tooltip.style("visibility","visible")
             .style("left", cx+"px")
             .style("top", cy+"px")
-            .text(d.name);
+            .html(d.name + "<br>" + d.hometown);
        
           d3.select(this)
             .attr("stroke","#010101")
@@ -379,13 +380,14 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
         .attr("fill", function(d) { return colorScale(d.ls_battles); })
         .on("mouseover", function(d) {
 
-          var cx = +d3.select(this).attr("cx")+15;
-          var cy = +d3.select(this).attr("cy")-20;
+          var cx = +d3.select(this).attr("cx") + 50;
+          var cy = +d3.select(this).attr("cy") + 570;
+
        
           tooltip.style("visibility","visible")
             .style("left", cx+"px")
             .style("top", cy+"px")
-            .text(d.name);
+            .html(d.name + "<br>" + d.hometown);
        
           d3.select(this)
             .attr("stroke","#010101")
@@ -429,13 +431,14 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
         .attr("fill", function(d) { return colorScale(d.ls_battles); })
         .on("mouseover", function(d) {
 
-          var cx = +d3.select(this).attr("cx")+15;
-          var cy = +d3.select(this).attr("cy")-20;
+          var cx = +d3.select(this).attr("cx") + 50;
+          var cy = +d3.select(this).attr("cy") + 570;
+
        
           tooltip.style("visibility","visible")
             .style("left", cx+"px")
             .style("top", cy+"px")
-            .text(d.name);
+            .html(d.name + "<br>" + d.hometown);
        
           d3.select(this)
             .attr("stroke","#010101")
@@ -478,14 +481,15 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
             .attr("r", function(d) { return rScale(d.challenge_wins); })
             .attr("fill", function(d) { return colorScale(d.ls_battles); })
             .on("mouseover", function(d) {
-    
-              var cx = +d3.select(this).attr("cx")+15;
-              var cy = +d3.select(this).attr("cy")-20;
+
+              var cx = +d3.select(this).attr("cx") + 50;
+              var cy = +d3.select(this).attr("cy") + 570;
+
            
               tooltip.style("visibility","visible")
                 .style("left", cx+"px")
                 .style("top", cy+"px")
-                .text(d.name);
+                .html(d.name + "<br>" + d.hometown);
            
               d3.select(this)
                 .attr("stroke","#010101")
@@ -528,14 +532,16 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
             .attr("r", function(d) { return rScale(d.challenge_wins); })
             .attr("fill", function(d) { return colorScale(d.ls_battles); })
             .on("mouseover", function(d) {
+
+              var cx = +d3.select(this).attr("cx") + 50;
+              var cy = +d3.select(this).attr("cy") + 570;
     
-              var cx = +d3.select(this).attr("cx")+15;
-              var cy = +d3.select(this).attr("cy")-20;
+
            
               tooltip.style("visibility","visible")
                 .style("left", cx+"px")
                 .style("top", cy+"px")
-                .text(d.name);
+                .html(d.name + "<br>" + d.hometown);
            
               d3.select(this)
                 .attr("stroke","#010101")
@@ -579,14 +585,14 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
             .attr("r", function(d) { return rScale(d.challenge_wins); })
             .attr("fill", function(d) { return colorScale(d.ls_battles); })
             .on("mouseover", function(d) {
-    
-              var cx = +d3.select(this).attr("cx")+15;
-              var cy = +d3.select(this).attr("cy")-20;
+
+              var cx = +d3.select(this).attr("cx") + 50;
+              var cy = +d3.select(this).attr("cy") + 570;
            
               tooltip.style("visibility","visible")
                 .style("left", cx+"px")
                 .style("top", cy+"px")
-                .text(d.name);
+                .html(d.name + "<br>" + d.hometown);
            
               d3.select(this)
                 .attr("stroke","#010101")
@@ -629,14 +635,16 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
             .attr("r", function(d) { return rScale(d.challenge_wins); })
             .attr("fill", function(d) { return colorScale(d.ls_battles); })
             .on("mouseover", function(d) {
+
+              var cx = +d3.select(this).attr("cx") + 50;
+              var cy = +d3.select(this).attr("cy") + 570;
     
-              var cx = +d3.select(this).attr("cx")+15;
-              var cy = +d3.select(this).attr("cy")-20;
+
            
               tooltip.style("visibility","visible")
                 .style("left", cx+"px")
                 .style("top", cy+"px")
-                .text(d.name);
+                .html(d.name + "<br>" + d.hometown);
            
               d3.select(this)
                 .attr("stroke","#010101")
@@ -679,14 +687,16 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
             .attr("r", function(d) { return rScale(d.challenge_wins); })
             .attr("fill", function(d) { return colorScale(d.ls_battles); })
             .on("mouseover", function(d) {
+
+              var cx = +d3.select(this).attr("cx") + 50;
+              var cy = +d3.select(this).attr("cy") + 570;
     
-              var cx = +d3.select(this).attr("cx")+15;
-              var cy = +d3.select(this).attr("cy")-20;
+
            
               tooltip.style("visibility","visible")
                 .style("left", cx+"px")
                 .style("top", cy+"px")
-                .text(d.name);
+                .html(d.name + "<br>" + d.hometown);
            
               d3.select(this)
                 .attr("stroke","#010101")
@@ -729,14 +739,16 @@ d3.csv("./data/rpdr_data.csv").then(function(data) {
             .attr("r", function(d) { return rScale(d.challenge_wins); })
             .attr("fill", function(d) { return colorScale(d.ls_battles); })
             .on("mouseover", function(d) {
+
+              var cx = +d3.select(this).attr("cx") + 50;
+              var cy = +d3.select(this).attr("cy") + 570;
     
-              var cx = +d3.select(this).attr("cx")+15;
-              var cy = +d3.select(this).attr("cy")-20;
+
            
               tooltip.style("visibility","visible")
                 .style("left", cx+"px")
                 .style("top", cy+"px")
-                .text(d.name);
+                .html(d.name + "<br>" + d.hometown);
            
               d3.select(this)
                 .attr("stroke","#010101")
