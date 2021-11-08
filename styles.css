@@ -48,7 +48,7 @@ img {
 	display: flex;
 	flex-direction: row;
   align-items: flex-end;
-  background:black;
+  background:rgb(42, 115, 175);
   text-align:center;
 }
 
@@ -107,7 +107,7 @@ p {
   width: 100%;
   text-align:left;
   line-height:150%;
-  color:red;
+  color:rgb(0, 0, 0);
 }
 
 a {
