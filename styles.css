@@ -45,6 +45,7 @@ img {
 
 #sidebar {
 	width: 40%;
+    height: auto;
 	display: flex;
 	flex-direction: row;
   align-items: flex-end;
