@@ -30,7 +30,7 @@ html, body {
 }
 
 img {
-  width: 45%;
+  width: 40%;
   height: auto;
   display: flex;
   position:fixed;
@@ -44,7 +44,7 @@ img {
 }
 
 #sidebar {
-	width: 40%;
+	width: 45%;
     height: auto;
 	display: flex;
 	flex-direction: row;
