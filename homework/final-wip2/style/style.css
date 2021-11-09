@@ -12,14 +12,15 @@ html, body {
 
 #banner {
   background-color: #ffffff;
-  background-image: url('https://www.sciencemag.org/sites/default/files/styles/article_main_large/public/images/sn-bigfootH.jpg?itok=Lt3JPra5');
-  background-position: center;
+  background-image: url('https://static-20.sinclairstoryline.com/resources/media/872fff7d-ecd3-46ea-9337-344ba1d187ba-large16x9_bigfootsight.jpg');
+  background-position:top;
+  opacity: 80%;
   background-size: cover;
-  padding: 13vh 20px;
+  padding: 20vh 20px;
   text-align: center;
   text-shadow: 0 10px 11px black;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1.5em;
+  font-size: 1.7em;
   color: rgb(250, 250, 250);
 }
 
