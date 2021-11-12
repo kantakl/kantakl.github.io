@@ -21,6 +21,7 @@ var chartHeight = height - margin.top - margin.bottom;
         return d.team_sport == "no";
     });
 
+
           
         var endurance = {
             min: d3.min(data, function(d) { return +d.endurance; }),
@@ -42,6 +43,54 @@ var chartHeight = height - margin.top - margin.bottom;
           max: d3.max(data, function(d) { return +d.speed; })
         };
 
+
+        var agility = {
+          min: d3.min(data, function(d) { return +d.agility; }),
+          max: d3.max(data, function(d) { return +d.agility; })
+        };
+
+        var flexibility = {
+          min: d3.min(data, function(d) { return +d.flexibility; }),
+          max: d3.max(data, function(d) { return +d.flexibility; })
+        };
+
+        var nerve = {
+          min: d3.min(data, function(d) { return +d.nerve; }),
+          max: d3.max(data, function(d) { return +d.nerve; })
+        };
+
+
+        var durability = {
+          min: d3.min(data, function(d) { return +d.durability; }),
+          max: d3.max(data, function(d) { return +d.durability; })
+        };
+
+
+        var h_e_coordination = {
+          min: d3.min(data, function(d) { return +d.h_e_coordination; }),
+          max: d3.max(data, function(d) { return +d.h_e_coordination; })
+        };
+
+        var ana = {
+          min: d3.min(data, function(d) { return +d.ana; }),
+          max: d3.max(data, function(d) { return +d.ana; })
+        };
+
+        var total = {
+          min: d3.min(data, function(d) { return +d.total; }),
+          max: d3.max(data, function(d) { return +d.total; })
+        };
+
+        var rank = {
+          min: d3.min(data, function(d) { return +d.rank; }),
+          max: d3.max(data, function(d) { return +d.rank; })
+        };
+
+
+
+
+
+
 //x and y scale domain//
 
         var xScale = d3.scaleLinear()
@@ -50,15 +99,15 @@ var chartHeight = height - margin.top - margin.bottom;
 
 
         var yScale = d3.scaleLinear()
-            .domain([strength.min, strength.max])
+            .domain([speed.min, speed.max])
             .range([height-margin.bottom, margin.top]);
 
         var colorScale = d3.scaleOrdinal(d3.schemeBlues[0,5]);
 
 
         var rScale = d3.scaleSqrt()
-        .domain([power.min, power.max])
-        .range([5, 35]);
+        .domain([nerve.min, nerve.max])
+        .range([3, 25]);
 
 // x and y scale drawing//
 
@@ -84,8 +133,46 @@ var chartHeight = height - margin.top - margin.bottom;
         .attr("transform","rotate(-90)")
         .attr("x",-height/2)
         .attr("y",margin.left/2)
-        .text("Strength");  
+        .text("Speed");  
 
+          //draw and label axis for circles//
+
+    
+    var circle = svg.selectAll("circle")
+    .data(data)
+    .enter()
+    .append("circle")
+        .attr("cx", function(d) { return xScale(d.endurance); })
+        .attr("cy", function(d) { return yScale(d.speed); })
+        .attr("r", function(d) { return rScale(d.power); })
+        .attr("fill", function(d) { return colorScale(d.speed); })
+        .on("mouseover", function(d) {
+
+          var cx = +d3.select(this).attr("cx") + 10;
+          var cy = +d3.select(this).attr("cy") + 70;
+       
+          tooltip.style("visibility","visible")
+            .style("left", cx + "px")
+            .style("top", cy + "px")
+            .html(d.sport + "<br>" + d.rank + "<br>" + d.total);
+       
+          d3.select(this)
+            .attr("stroke","purple")
+            .attr("stroke-width",2);
+       
+        }).on("mouseout", function() {
+       
+          tooltip.style("visibility","hidden");
+       
+          d3.select(this)
+            .attr("stroke","none")
+            .attr("stroke-width",0);
+        })
+
+        var tooltip = d3.select("#tooltip")
+        .append("div")
+        .attr("class","tooltip");
+       
 
 
 

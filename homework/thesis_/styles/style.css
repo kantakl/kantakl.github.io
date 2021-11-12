@@ -9,3 +9,21 @@
     font-weight:normal;
     fill: rgb(0, 0, 0);
   }
+
+  .tooltip {
+    position: absolute;
+    left: 1px;
+    top: 10px;
+    visibility: hidden;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 11pt;
+    width:185px;
+    height:70px;
+    color: rgb(0, 0, 0);
+    background-color:  rgb(230, 230, 230);
+    border-radius: 4px;
+    padding: 5px;
+    /*pointer-events: none;*/
+  }
+  
