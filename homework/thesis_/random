@@ -1,0 +1,12 @@
+             var xScale = d3.scaleBand()
+                   .domain(["Boxing", "Ice Hockey", "Football", "Basketaball", "Wrestling", "Martial Arts", "Tennis",
+                   "Gymnastics", "Baseball/Softball", "Soccer", "Skiing:Alpine", "Water Polo", "Rugby", "Lacrosse",
+                   "Rodeo: Steer Wrestling", "Track & Field: Pole Vault", "Field Hockey", "Speed Skating", "Figure Skating", 
+                   "Cycling: Distance", "Volleyball", "Racquetball", "Surfing", "Fencing", "Skiing: Freestyle", "Team Handball", "Cycling: Sprints", 
+                   "Bobsledding/Luge", "Ski Jumping", "Badminton", "Skiing: Nordic", "Auto Racing", "Track & Field: High Jump", 
+                   "Track & Field: Long, Triple Jumps", "Diving", "Swimming: Distance",
+                   "Skateboarding", "Track & Field: Sprints", "Rowing", "Rodeo: Calf Roaping", "Track & Field: Distance", "Rodeo: Bull/Bareback/Bronc Riding",
+                   "Track & Field: Middle Distance", "Weight-Lifting", "Swimming: Sprints", "Water Skiing", "Table Tennis", "Track & Field: Weights", "Canoe/Kayak", 
+                   "Horse Racing", "Golf", "Cheerleading", "Roller Skating", "Equestrian", "Archery", "Curling", "Bowling", "Shooting", "Billiards", "Fishing"])
+                   .rangeRound([margin.left, width-margin.right])
+                   .padding(0.5);
