@@ -102,7 +102,7 @@ var chartHeight = height - margin.top - margin.bottom;
             .domain([speed.min, speed.max])
             .range([height-margin.bottom, margin.top]);
 
-        var colorScale = d3.scaleOrdinal(d3.schemeBlues[0,5]);
+        var colorScale = d3.scaleOrdinal(d3.schemeBlues[3,5]);
 
 
         var rScale = d3.scaleSqrt()
@@ -145,7 +145,7 @@ var chartHeight = height - margin.top - margin.bottom;
         .attr("cx", function(d) { return xScale(d.endurance); })
         .attr("cy", function(d) { return yScale(d.speed); })
         .attr("r", function(d) { return rScale(d.power); })
-        .attr("fill", function(d) { return colorScale(d.speed); })
+        .attr("fill", function(d) { return colorScale(d.team_sport); })
         .on("mouseover", function(d) {
 
           var cx = +d3.select(this).attr("cx") + 10;
