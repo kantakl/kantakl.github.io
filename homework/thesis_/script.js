@@ -144,7 +144,7 @@ var chartHeight = height - margin.top - margin.bottom;
     .append("circle")
         .attr("cx", function(d) { return xScale(d.endurance); })
         .attr("cy", function(d) { return yScale(d.speed); })
-        .attr("r", function(d) { return rScale(d.power); })
+        .attr("r", function(d) { return rScale(d.nerve); })
         .attr("fill", function(d) { return colorScale(d.team_sport); })
         .on("mouseover", function(d) {
 
@@ -157,7 +157,7 @@ var chartHeight = height - margin.top - margin.bottom;
             .html(d.sport + "<br>" + d.rank + "<br>" + d.total);
        
           d3.select(this)
-            .attr("stroke","purple")
+            .attr("stroke","red")
             .attr("stroke-width",2);
        
         }).on("mouseout", function() {
