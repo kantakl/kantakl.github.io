@@ -93,10 +93,20 @@ var chartHeight = height - margin.top - margin.bottom;
 
 //x and y scale domain//
 
-        var xScale = d3.scaleLinear()
-            .domain([endurance.min, endurance.max])
-            .range([margin.left, width-margin.right]);
 
+        var xScale = d3.scaleBand()
+        .domain(["Archery", "Auto Racing", "Badminton", "Baseball/Softball", "Basketball", "Billiards", "Bobsledding/Luge",
+        "Bowling", "Boxing", "Canoe/Kayak", "Cheerleading", "Curling", "Cycling: Distance", "Cycling: Sprints",
+        "Diving", "Equestrian", "Fencing", "Field Hockey", "Figure Skating", "Fishing", "Football", "Golf",
+        "Gymnastics", "Horse Racing", "Ice Hockey", "Lacrosse", "Martial Arts", "Racquetball/Squash", "Rodeo: Bull/Bareback/Bronc Riding", "Rodeo: Calf Roping",
+        "Rodeo: Steer Wrestling", "Roller Skating", "Rowing", "Rugby", "Shooting", "Skateboarding",
+        "Ski Jumping", "Skiing: Alpine", "Skiing: Freestyle", "Skiing: Nordic", "Soccer", "Speed Skating",
+        "Surfing", "Swimming (all strokes): Distance", "Swimming (all strokes): Sprints", "Table Tennis", "Team Handball", "Tennis", "Track and Field: Distance", 
+        "Track and Field: High Jump", "Track and Field: Long, Triple jumps", "Track and Field: Middle Distance",
+        "Track and Field: Pole Vault", "Track and Field: Sprints", "Track and Field: Weights",
+        "Volleyball", "Water Polo", "Water Skiing", "Weight-Lifting", "Wrestling"])
+        .rangeRound([margin.left, width-margin.right])
+        .padding(0.3);
 
         var yScale = d3.scaleLinear()
             .domain([speed.min, speed.max])
@@ -112,9 +122,15 @@ var chartHeight = height - margin.top - margin.bottom;
 // x and y scale drawing//
 
         var xAxis = svg.append("g")
-        .attr("class","axis")
+        .attr("class","x axis")
         .attr("transform", `translate(0,${height-margin.bottom})`)
-        .call(d3.axisBottom().scale(xScale));
+        .call(d3.axisBottom().scale(xScale))
+        .selectAll("text")  
+            .style("text-anchor", "end")
+            .attr("dx", "-1.5em")
+            .attr("dy", ".5em")
+            .attr("transform", "rotate(-60)" );
+        ;
 
     var yAxis = svg.append("g")
         .attr("class","axis")
@@ -126,7 +142,7 @@ var chartHeight = height - margin.top - margin.bottom;
         .attr("class","axisLabel")
         .attr("x", width/2)
         .attr("y", height-margin.bottom/2)
-        .text("Endurance");
+        .text("Sport");
 
     var yAxisLabel = svg.append("text")
         .attr("class","axisLabel")
@@ -142,13 +158,14 @@ var chartHeight = height - margin.top - margin.bottom;
     .data(data)
     .enter()
     .append("circle")
-        .attr("cx", function(d) { return xScale(d.endurance); })
+        .attr("cx",function(d) { return xScale(d.sport); })
         .attr("cy", function(d) { return yScale(d.speed); })
         .attr("r", function(d) { return rScale(d.nerve); })
         .attr("fill", function(d) { return colorScale(d.team_sport); })
         .on("mouseover", function(d) {
 
           var cx = +d3.select(this).attr("cx") + 10;
+
           var cy = +d3.select(this).attr("cy") + 70;
        
           tooltip.style("visibility","visible")
