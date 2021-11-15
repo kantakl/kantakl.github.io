@@ -147,8 +147,7 @@ var chartHeight = height - margin.top - margin.bottom;
         .attr("class","axisLabel")
         .attr("transform","rotate(-90)")
         .attr("x",-height/2)
-        .attr("y",margin.left/2)
-        .text("Speed");  
+        .attr("y",margin.left/2);  
 
           //draw and label axis for circles//
 
@@ -226,7 +225,7 @@ var chartHeight = height - margin.top - margin.bottom;
                 })
               .merge(c)
                 .transition()
-                .duration(1500)
+                .duration(1000)
                 .attr("cx", function(d) { return xScale(d.sport); })
                 .attr("cy", function(d) { return yScale(d.endurance); })
                 .attr("r", function(d) { return rScale(d.endurance); })
@@ -280,7 +279,7 @@ var chartHeight = height - margin.top - margin.bottom;
               })
             .merge(c)
               .transition()
-              .duration(1500)
+              .duration(1000)
               .attr("cx", function(d) { return xScale(d.sport); })
               .attr("cy", function(d) { return yScale(d.strength); })
               .attr("r", function(d) { return rScale(d.strength); })
@@ -288,7 +287,7 @@ var chartHeight = height - margin.top - margin.bottom;
 
             c.exit()
               .transition()
-              .duration(500)
+              .duration(1500)
               .attr("r",0)
               .remove();
           })
