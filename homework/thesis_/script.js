@@ -141,8 +141,7 @@ var chartHeight = height - margin.top - margin.bottom;
     var xAxisLabel = svg.append("text")
         .attr("class","axisLabel")
         .attr("x", width/2)
-        .attr("y", height-margin.bottom/2)
-        .text("Sport");
+        .attr("y", height-margin.bottom/2);
 
     var yAxisLabel = svg.append("text")
         .attr("class","axisLabel")
