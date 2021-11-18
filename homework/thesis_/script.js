@@ -225,7 +225,7 @@ var chartHeight = height - margin.top - margin.bottom;
                 })
               .merge(c)
                 .transition()
-                .duration(1000)
+                .duration(800)
                 .attr("cx", function(d) { return xScale(d.sport); })
                 .attr("cy", function(d) { return yScale(d.endurance); })
                 .attr("r", function(d) { return rScale(d.endurance); })
@@ -233,7 +233,7 @@ var chartHeight = height - margin.top - margin.bottom;
         
               c.exit()
                 .transition()
-                .duration(500)
+                .duration(800)
                 .attr("r",0)
                 .remove();
   
@@ -279,7 +279,7 @@ var chartHeight = height - margin.top - margin.bottom;
               })
             .merge(c)
               .transition()
-              .duration(1000)
+              .duration(800)
               .attr("cx", function(d) { return xScale(d.sport); })
               .attr("cy", function(d) { return yScale(d.strength); })
               .attr("r", function(d) { return rScale(d.strength); })
@@ -287,7 +287,7 @@ var chartHeight = height - margin.top - margin.bottom;
 
             c.exit()
               .transition()
-              .duration(1500)
+              .duration(800)
               .attr("r",0)
               .remove();
           })
