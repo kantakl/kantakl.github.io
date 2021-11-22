@@ -3,6 +3,10 @@
     height: 100vh;
   }
 
+#banner h1{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
   .axisLabel {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 8pt;
@@ -31,4 +35,18 @@
 
 .tick text  {
   color:rgb(0, 0, 0);
+
 }
+
+button  {
+  color:rgb(0, 0, 0);
+  background-color: rgb(212, 212, 214);
+  border: none;
+  padding: 10px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 9pt;
+  border-radius: 12px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }

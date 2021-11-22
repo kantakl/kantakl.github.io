@@ -112,7 +112,7 @@ var chartHeight = height - margin.top - margin.bottom;
             .domain([speed.min, speed.max])
             .range([height-margin.bottom, margin.top]);
 
-        var colorScale = d3.scaleOrdinal(d3.schemeBlues[3,5]);
+        var colorScale = d3.scaleOrdinal(d3.schemeGreens[1,4]);
 
 
         var rScale = d3.scaleSqrt()
@@ -291,6 +291,459 @@ var chartHeight = height - margin.top - margin.bottom;
               .attr("r",0)
               .remove();
           })
+
+          //power//
+
+          d3.select("#power").on("click", function() {
+                
+            var c = svg.selectAll("circle")
+              .data(data, function(d) { return d.power; });
+
+            c.enter()
+            .append("circle")
+              .attr("cx", function(d) { return xScale(d.sport); })
+              .attr("cy", function(d) { return yScale(d.power); })
+              .attr("r", function(d) { return rScale(d.power); })
+              .attr("fill", function(d) { return colorScale(d.team_sport); })
+              .on("mouseover", function(d) {
+
+                var cx = +d3.select(this).attr("cx") + 50;
+                var cy = +d3.select(this).attr("cy") + 570;
+            
+                tooltip.style("visibility","visible")
+                  .style("left", cx+"px")
+                  .style("top", cy+"px")
+                  .html(d.sport + "<br>" + d.total);
+            
+                d3.select(this)
+                  .attr("stroke","#010101")
+                  .attr("stroke-width",3);
+            
+              }).on("mouseout", function() {
+            
+                tooltip.style("visibility","hidden");
+            
+                d3.select(this)
+                  .attr("stroke","none")
+                  .attr("stroke-width",0);
+              })
+            .merge(c)
+              .transition()
+              .duration(800)
+              .attr("cx", function(d) { return xScale(d.sport); })
+              .attr("cy", function(d) { return yScale(d.power); })
+              .attr("r", function(d) { return rScale(d.power); })
+              .attr("fill", function(d) { return colorScale(d.team_sport); })
+
+            c.exit()
+              .transition()
+              .duration(800)
+              .attr("r",0)
+              .remove();
+          })
+
+            //speed//
+
+            d3.select("#speed").on("click", function() {
+                
+              var c = svg.selectAll("circle")
+                .data(data, function(d) { return d.speed; });
+  
+              c.enter()
+              .append("circle")
+                .attr("cx", function(d) { return xScale(d.sport); })
+                .attr("cy", function(d) { return yScale(d.speed); })
+                .attr("r", function(d) { return rScale(d.speed); })
+                .attr("fill", function(d) { return colorScale(d.team_sport); })
+                .on("mouseover", function(d) {
+  
+                  var cx = +d3.select(this).attr("cx") + 50;
+                  var cy = +d3.select(this).attr("cy") + 570;
+              
+                  tooltip.style("visibility","visible")
+                    .style("left", cx+"px")
+                    .style("top", cy+"px")
+                    .html(d.sport + "<br>" + d.total);
+              
+                  d3.select(this)
+                    .attr("stroke","#010101")
+                    .attr("stroke-width",3);
+              
+                }).on("mouseout", function() {
+              
+                  tooltip.style("visibility","hidden");
+              
+                  d3.select(this)
+                    .attr("stroke","none")
+                    .attr("stroke-width",0);
+                })
+              .merge(c)
+                .transition()
+                .duration(800)
+                .attr("cx", function(d) { return xScale(d.sport); })
+                .attr("cy", function(d) { return yScale(d.speed); })
+                .attr("r", function(d) { return rScale(d.speed); })
+                .attr("fill", function(d) { return colorScale(d.team_sport); })
+  
+              c.exit()
+                .transition()
+                .duration(800)
+                .attr("r",0)
+                .remove();
+            })
+
+    
+            //agility//
+
+            d3.select("#agility").on("click", function() {
+                
+              var c = svg.selectAll("circle")
+                .data(data, function(d) { return d.agility; });
+  
+              c.enter()
+              .append("circle")
+                .attr("cx", function(d) { return xScale(d.sport); })
+                .attr("cy", function(d) { return yScale(d.agility); })
+                .attr("r", function(d) { return rScale(d.agility); })
+                .attr("fill", function(d) { return colorScale(d.team_sport); })
+                .on("mouseover", function(d) {
+  
+                  var cx = +d3.select(this).attr("cx") + 50;
+                  var cy = +d3.select(this).attr("cy") + 570;
+              
+                  tooltip.style("visibility","visible")
+                    .style("left", cx+"px")
+                    .style("top", cy+"px")
+                    .html(d.sport + "<br>" + d.total);
+              
+                  d3.select(this)
+                    .attr("stroke","#010101")
+                    .attr("stroke-width",3);
+              
+                }).on("mouseout", function() {
+              
+                  tooltip.style("visibility","hidden");
+              
+                  d3.select(this)
+                    .attr("stroke","none")
+                    .attr("stroke-width",0);
+                })
+              .merge(c)
+                .transition()
+                .duration(800)
+                .attr("cx", function(d) { return xScale(d.sport); })
+                .attr("cy", function(d) { return yScale(d.agility); })
+                .attr("r", function(d) { return rScale(d.agility); })
+                .attr("fill", function(d) { return colorScale(d.team_sport); })
+  
+              c.exit()
+                .transition()
+                .duration(800)
+                .attr("r",0)
+                .remove();
+            })
+
+        
+            //flexibility//
+
+            d3.select("#flexibility").on("click", function() {
+                
+              var c = svg.selectAll("circle")
+                .data(data, function(d) { return d.flexibility; });
+  
+              c.enter()
+              .append("circle")
+                .attr("cx", function(d) { return xScale(d.sport); })
+                .attr("cy", function(d) { return yScale(d.flexibility); })
+                .attr("r", function(d) { return rScale(d.flexibility); })
+                .attr("fill", function(d) { return colorScale(d.team_sport); })
+                .on("mouseover", function(d) {
+  
+                  var cx = +d3.select(this).attr("cx") + 50;
+                  var cy = +d3.select(this).attr("cy") + 570;
+              
+                  tooltip.style("visibility","visible")
+                    .style("left", cx+"px")
+                    .style("top", cy+"px")
+                    .html(d.sport + "<br>" + d.total);
+              
+                  d3.select(this)
+                    .attr("stroke","#010101")
+                    .attr("stroke-width",3);
+              
+                }).on("mouseout", function() {
+              
+                  tooltip.style("visibility","hidden");
+              
+                  d3.select(this)
+                    .attr("stroke","none")
+                    .attr("stroke-width",0);
+                })
+              .merge(c)
+                .transition()
+                .duration(800)
+                .attr("cx", function(d) { return xScale(d.sport); })
+                .attr("cy", function(d) { return yScale(d.flexibility); })
+                .attr("r", function(d) { return rScale(d.flexibility); })
+                .attr("fill", function(d) { return colorScale(d.team_sport); })
+  
+              c.exit()
+                .transition()
+                .duration(800)
+                .attr("r",0)
+                .remove();
+            })
+
+                //nerve//
+
+                d3.select("#nerve").on("click", function() {
+                
+                  var c = svg.selectAll("circle")
+                    .data(data, function(d) { return d.nerve; });
+      
+                  c.enter()
+                  .append("circle")
+                    .attr("cx", function(d) { return xScale(d.sport); })
+                    .attr("cy", function(d) { return yScale(d.nerve); })
+                    .attr("r", function(d) { return rScale(d.nerve); })
+                    .attr("fill", function(d) { return colorScale(d.team_sport); })
+                    .on("mouseover", function(d) {
+      
+                      var cx = +d3.select(this).attr("cx") + 50;
+                      var cy = +d3.select(this).attr("cy") + 570;
+                  
+                      tooltip.style("visibility","visible")
+                        .style("left", cx+"px")
+                        .style("top", cy+"px")
+                        .html(d.sport + "<br>" + d.total);
+                  
+                      d3.select(this)
+                        .attr("stroke","#010101")
+                        .attr("stroke-width",3);
+                  
+                    }).on("mouseout", function() {
+                  
+                      tooltip.style("visibility","hidden");
+                  
+                      d3.select(this)
+                        .attr("stroke","none")
+                        .attr("stroke-width",0);
+                    })
+                  .merge(c)
+                    .transition()
+                    .duration(800)
+                    .attr("cx", function(d) { return xScale(d.sport); })
+                    .attr("cy", function(d) { return yScale(d.nerve); })
+                    .attr("r", function(d) { return rScale(d.nerve); })
+                    .attr("fill", function(d) { return colorScale(d.team_sport); })
+      
+                  c.exit()
+                    .transition()
+                    .duration(800)
+                    .attr("r",0)
+                    .remove();
+                })
+
+                    //nerve//
+
+                d3.select("#nerve").on("click", function() {
+                
+                  var c = svg.selectAll("circle")
+                    .data(data, function(d) { return d.nerve; });
+      
+                  c.enter()
+                  .append("circle")
+                    .attr("cx", function(d) { return xScale(d.sport); })
+                    .attr("cy", function(d) { return yScale(d.nerve); })
+                    .attr("r", function(d) { return rScale(d.nerve); })
+                    .attr("fill", function(d) { return colorScale(d.team_sport); })
+                    .on("mouseover", function(d) {
+      
+                      var cx = +d3.select(this).attr("cx") + 50;
+                      var cy = +d3.select(this).attr("cy") + 570;
+                  
+                      tooltip.style("visibility","visible")
+                        .style("left", cx+"px")
+                        .style("top", cy+"px")
+                        .html(d.sport + "<br>" + d.total);
+                  
+                      d3.select(this)
+                        .attr("stroke","#010101")
+                        .attr("stroke-width",3);
+                  
+                    }).on("mouseout", function() {
+                  
+                      tooltip.style("visibility","hidden");
+                  
+                      d3.select(this)
+                        .attr("stroke","none")
+                        .attr("stroke-width",0);
+                    })
+                  .merge(c)
+                    .transition()
+                    .duration(800)
+                    .attr("cx", function(d) { return xScale(d.sport); })
+                    .attr("cy", function(d) { return yScale(d.nerve); })
+                    .attr("r", function(d) { return rScale(d.nerve); })
+                    .attr("fill", function(d) { return colorScale(d.team_sport); })
+      
+                  c.exit()
+                    .transition()
+                    .duration(800)
+                    .attr("r",0)
+                    .remove();
+                })
+            
+            //durability//
+
+            d3.select("#durability").on("click", function() {
+                
+            var c = svg.selectAll("circle")
+              .data(data, function(d) { return d.durability; });
+        
+              c.enter()
+                .append("circle")
+                  .attr("cx", function(d) { return xScale(d.sport); })
+                  .attr("cy", function(d) { return yScale(d.durability); })
+                  .attr("r", function(d) { return rScale(d.durability); })
+                  .attr("fill", function(d) { return colorScale(d.team_sport); })
+                  .on("mouseover", function(d) {
+        
+                        var cx = +d3.select(this).attr("cx") + 50;
+                        var cy = +d3.select(this).attr("cy") + 570;
+                    
+                        tooltip.style("visibility","visible")
+                          .style("left", cx+"px")
+                          .style("top", cy+"px")
+                          .html(d.sport + "<br>" + d.total);
+                    
+                        d3.select(this)
+                          .attr("stroke","#010101")
+                          .attr("stroke-width",3);
+                    
+                      }).on("mouseout", function() {
+                    
+                        tooltip.style("visibility","hidden");
+                    
+                        d3.select(this)
+                          .attr("stroke","none")
+                          .attr("stroke-width",0);
+                      })
+                    .merge(c)
+                      .transition()
+                      .duration(800)
+                      .attr("cx", function(d) { return xScale(d.sport); })
+                      .attr("cy", function(d) { return yScale(d.durability); })
+                      .attr("r", function(d) { return rScale(d.durability); })
+                      .attr("fill", function(d) { return colorScale(d.team_sport); })
+        
+                    c.exit()
+                      .transition()
+                      .duration(800)
+                      .attr("r",0)
+                      .remove();
+                  })
+                
+            //durability//
+
+            d3.select("#h_e_coordination").on("click", function() {
+                
+              var c = svg.selectAll("circle")
+                .data(data, function(d) { return d.h_e_coordination; });
+          
+                c.enter()
+                  .append("circle")
+                    .attr("cx", function(d) { return xScale(d.sport); })
+                    .attr("cy", function(d) { return yScale(d.h_e_coordination); })
+                    .attr("r", function(d) { return rScale(d.h_e_coordination); })
+                    .attr("fill", function(d) { return colorScale(d.team_sport); })
+                    .on("mouseover", function(d) {
+          
+                          var cx = +d3.select(this).attr("cx") + 50;
+                          var cy = +d3.select(this).attr("cy") + 570;
+                      
+                          tooltip.style("visibility","visible")
+                            .style("left", cx+"px")
+                            .style("top", cy+"px")
+                            .html(d.sport + "<br>" + d.total);
+                      
+                          d3.select(this)
+                            .attr("stroke","#010101")
+                            .attr("stroke-width",3);
+                      
+                        }).on("mouseout", function() {
+                      
+                          tooltip.style("visibility","hidden");
+                      
+                          d3.select(this)
+                            .attr("stroke","none")
+                            .attr("stroke-width",0);
+                        })
+                      .merge(c)
+                        .transition()
+                        .duration(800)
+                        .attr("cx", function(d) { return xScale(d.sport); })
+                        .attr("cy", function(d) { return yScale(d.h_e_coordination); })
+                        .attr("r", function(d) { return rScale(d.h_e_coordination); })
+                        .attr("fill", function(d) { return colorScale(d.team_sport); })
+          
+                      c.exit()
+                        .transition()
+                        .duration(800)
+                        .attr("r",0)
+                        .remove();
+                    })
+
+                   
+            //analytic aptitide//
+
+            d3.select("#ana").on("click", function() {
+                
+              var c = svg.selectAll("circle")
+                .data(data, function(d) { return d.ana; });
+          
+                c.enter()
+                  .append("circle")
+                    .attr("cx", function(d) { return xScale(d.sport); })
+                    .attr("cy", function(d) { return yScale(d.ana); })
+                    .attr("r", function(d) { return rScale(d.ana); })
+                    .attr("fill", function(d) { return colorScale(d.team_sport); })
+                    .on("mouseover", function(d) {
+          
+                          var cx = +d3.select(this).attr("cx") + 50;
+                          var cy = +d3.select(this).attr("cy") + 570;
+                      
+                          tooltip.style("visibility","visible")
+                            .style("left", cx+"px")
+                            .style("top", cy+"px")
+                            .html(d.sport + "<br>" + d.total);
+                      
+                          d3.select(this)
+                            .attr("stroke","#010101")
+                            .attr("stroke-width",3);
+                      
+                        }).on("mouseout", function() {
+                      
+                          tooltip.style("visibility","hidden");
+                      
+                          d3.select(this)
+                            .attr("stroke","none")
+                            .attr("stroke-width",0);
+                        })
+                      .merge(c)
+                        .transition()
+                        .duration(800)
+                        .attr("cx", function(d) { return xScale(d.sport); })
+                        .attr("cy", function(d) { return yScale(d.ana); })
+                        .attr("r", function(d) { return rScale(d.ana); })
+                        .attr("fill", function(d) { return colorScale(d.team_sport); })
+          
+                      c.exit()
+                        .transition()
+                        .duration(800)
+                        .attr("r",0)
+                        .remove();
+                    })
 
    });
         
