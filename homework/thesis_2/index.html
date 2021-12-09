@@ -3,6 +3,7 @@
     <head>
         <link rel="stylesheet" type="text/css" href="./styles/style.css">
         <script src="lib/d3.js"></script>
+        <script src="https://unpkg.com/topojson@3"></script>
 
         <title>Visualizing Recreational Space in Boston, MA</title>
 
@@ -39,12 +40,23 @@
 
         <body>
 
-          <script src="./script.js"></script>
+          <body>
 
-            <svg id="chart"></svg>
-
-            <div id="tooltip">
-            </div>
+            <svg id="viz">
+        
+                        
+                <rect id="background" fill="steelblue" />
+        
+                <g id="map"></g>
+        
+        
+            </svg>
+        
+        
+            <script src="./script.js"></script>
+          
+        
+            </body>
 
 
 
